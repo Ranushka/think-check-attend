@@ -30,7 +30,7 @@ const QuestionsJen = ({ questions }: any) => {
   } = useGlobal()
 
   return (
-    <div>
+    <div className="pt-4">
       {questions.map((qItem: any, index: number) => {
         const { QUESTION, ANSWERS, TRIGGER, DEPENDENT_QUESTIONS } = qItem
 
