@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect } from 'react'
 const GGL_API_KEY = 'AIzaSyB0HPYKSPYbsoo8qaB2iHWVyByTvUIJfRQ'
 const GGL_SEARCH_ENGINE_ID = 'f16d2b8da7c0f44ab'

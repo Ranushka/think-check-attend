@@ -1,6 +1,6 @@
 import toSentenceCase from './toSentenceCase'
 
-const formatGoogleSheetData = (data) => {
+const formatGoogleSheetData = (data: any) => {
   const groupedData = []
 
   let currentCategory = null

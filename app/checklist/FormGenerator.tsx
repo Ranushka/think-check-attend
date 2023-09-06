@@ -1,3 +1,5 @@
+'use client'
+
 import { Disclosure } from '@headlessui/react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 
@@ -106,12 +108,10 @@ const SectionsJen = ({ items }: any) => {
   )
 }
 
-const FormGenerator = ({ csvData }: any) => {
+const FormGenerator = ({ formatedData }: any) => {
   const {
     state: { userAnswers },
   } = useGlobal()
-
-  const formatedData = fromatGoogleSheetData(csvData)
 
   return (
     <div className="p-8 pt-0">

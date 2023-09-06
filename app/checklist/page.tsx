@@ -1,10 +1,6 @@
-'use client'
-
-import Image from 'next/image'
-import FormList from './FormList'
-import SheetList from './SheetList'
+import GoogleSheetForm from './GoogleSheetForm'
 import GoogleSearch from './GoogleSearch'
-import useGlobal from '@/context/globalContext'
+import TotalScore from './TotalScore'
 import { classNames } from '@/helpers/classNames'
 
 const calculateFinalCount = (scoreCard: any) => {
@@ -22,21 +18,21 @@ const calculateFinalCount = (scoreCard: any) => {
 export default function CheckListPage({ searchParams }: any) {
   const q = searchParams?.q
 
-  const {
-    state: { scoreCard },
-  } = useGlobal()
+  // const {
+  //   state: { scoreCard },
+  // } = useGlobal()
 
-  const scoreIs = calculateFinalCount(scoreCard)
+  // const scoreIs = calculateFinalCount(scoreCard)
 
-  let scoreColorClass
+  // let scoreColorClass
 
-  if (parseInt(scoreIs) > 2) {
-    scoreColorClass = 'text-usp-attend'
-  } else if (parseInt(scoreIs) > 1) {
-    scoreColorClass = 'text-usp-check'
-  } else {
-    scoreColorClass = 'text-usp-think'
-  }
+  // if (parseInt(scoreIs) > 2) {
+  //   scoreColorClass = 'text-usp-attend'
+  // } else if (parseInt(scoreIs) > 1) {
+  //   scoreColorClass = 'text-usp-check'
+  // } else {
+  //   scoreColorClass = 'text-usp-think'
+  // }
 
   return (
     <main className="relative ">
@@ -67,24 +63,13 @@ export default function CheckListPage({ searchParams }: any) {
               </div>
             )}
           </div>
-          <div className="text-lg">
-            Total Score:
-            <span
-              className={classNames(
-                'pl-2 font-black text-2xl',
-                scoreColorClass,
-              )}
-            >
-              {scoreIs}
-            </span>
-          </div>
+          <TotalScore />
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto pt-10 flex justify-between relative">
         <div className="max-w-2xl w-full" id="user_content">
-          <SheetList />
-          {/* <FormList /> */}
+          <GoogleSheetForm />
         </div>
 
         <div
