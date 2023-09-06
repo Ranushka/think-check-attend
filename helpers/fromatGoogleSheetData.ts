@@ -1,15 +1,16 @@
 import toSentenceCase from './toSentenceCase'
 
 const formatGoogleSheetData = (data: any) => {
-  const groupedData = []
+  const groupedData: any = []
 
-  let currentCategory = null
-  let currentSection = null
-  let currentQuestion = null
+  let currentCategory: any,
+    currentSection: any,
+    currentQuestion: any = null
+
   let currentAnswer = null
   let currentDependentQuestion = null
 
-  data.forEach((item) => {
+  data.forEach((item: any) => {
     const {
       CATEGORY,
       SECTION,
@@ -53,7 +54,7 @@ const formatGoogleSheetData = (data: any) => {
     if (ANSWER) {
       currentAnswer = {
         DEPENDENT_QUESTIONS: [],
-        ANSWER: ANSWER.split(',').map((itm) => itm.trim()),
+        ANSWER: ANSWER.split(',').map((itm: any) => itm.trim()),
       }
       currentQuestion.ANSWERS = currentAnswer
       currentDependentQuestion = null
@@ -62,7 +63,9 @@ const formatGoogleSheetData = (data: any) => {
     if (DEPENDENT_QUESTION) {
       currentDependentQuestion = {
         DEPENDENT_QUESTION: toSentenceCase(DEPENDENT_QUESTION),
-        DEPENDENT_ANSWERS: DEPENDENT_ANSWER.split(',').map((itm) => itm.trim()),
+        DEPENDENT_ANSWERS: DEPENDENT_ANSWER.split(',').map((itm: any) =>
+          itm.trim(),
+        ),
       }
       currentQuestion.DEPENDENT_QUESTIONS.push(currentDependentQuestion)
     }
