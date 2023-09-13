@@ -5,8 +5,7 @@ import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 
 import useGlobal from '@/context/globalContext'
 import { classNames } from '@/helpers/classNames'
-import fromatGoogleSheetData from '@/helpers/fromatGoogleSheetData'
-import React from 'react'
+import React, { useEffect } from 'react'
 import QnaItem from './QnaItem'
 
 const DipQuestionsJen = ({ questions }: any) => {
@@ -110,14 +109,27 @@ const SectionsJen = ({ items }: any) => {
 
 const FormGenerator = ({ formatedData }: any) => {
   const {
-    state: { userAnswers },
+    state: { userAnswers, workingTab },
+    setGlobalState,
   } = useGlobal()
+  useEffect(() => {}, [workingTab])
 
   return (
     <div className="p-8 pt-0">
       {formatedData.map((item: any, index: number) => {
-        const isOpen = index === 0
         const formattedIndex = (index + 1).toString().padStart(2, '0')
+        const isOpen = workingTab === index
+
+        console.log('workingTab-->', workingTab)
+
+        const handleDisclosureOpen = () => {
+          // setGlobalState({ ...workingTab, parent: index })
+          // if (isOpen) {
+          setGlobalState({ workingTab: index })
+          // } else if (workingTab === index) {
+          //   setGlobalState({ workingTab: null })
+          // }
+        }
 
         return (
           <Disclosure
@@ -128,7 +140,11 @@ const FormGenerator = ({ formatedData }: any) => {
           >
             {({ open }) => (
               <div>
-                <Disclosure.Button className="flex w-full items-start justify-between text-left text-gray-900">
+                {JSON.stringify(index)}
+                <Disclosure.Button
+                  onClick={handleDisclosureOpen}
+                  className="flex w-full items-start justify-between text-left text-gray-900"
+                >
                   <div className="flex items-center">
                     <span className="text-gray-300 mr-2 text-xl -ml-6">
                       {formattedIndex}

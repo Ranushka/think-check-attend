@@ -1,7 +1,7 @@
 import React from 'react'
 import Papa from 'papaparse'
 import FormGenerator from './FormGenerator'
-import fromatGoogleSheetData from '@/helpers/fromatGoogleSheetData'
+import formatGoogleSheetData from '@/helpers/formatGoogleSheetData'
 
 const CSV_FILE_URL =
   'https://docs.google.com/spreadsheets/d/e/2PACX-1vQrIfiKbE1n08igSN2uMNJBbfe4_N_mKZSsy5t4NrWtjW7GwKAOJNXlAsUp6I9s4zQXQBbbYPF9Wn_8/pub?output=csv'
@@ -17,7 +17,7 @@ async function getData() {
 
   const { data }: any = await Papa.parse(csvText, { header: true })
 
-  const doneData = fromatGoogleSheetData(data)
+  const doneData = formatGoogleSheetData(data)
 
   return doneData
 }

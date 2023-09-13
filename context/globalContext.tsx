@@ -14,6 +14,7 @@ interface GlobalState {
   scoreCard: any
   prevPath: any
   userAnswers: any
+  workingTab: any
 }
 
 interface GlobalContextValue {
@@ -27,26 +28,39 @@ interface GlobalProviderProps {
   children: ReactNode
 }
 
-export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
-  const [state, setState] = useState<GlobalState>({
+function getDefaultState(): GlobalState {
+  return {
     finalScore: 0,
     scoreCard: null,
     prevPath: null,
     userAnswers: {},
+    workingTab: 0,
+    // workingTab: { parent: 0, child: 0 },
+  }
+}
+
+export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
+  const [state, setState] = useState<GlobalState>(() => {
+    try {
+      const storedState = localStorage.getItem('globalState')
+      return storedState ? JSON.parse(storedState) : getDefaultState()
+    } catch (error) {
+      console.error('Error parsing globalState from localStorage:', error)
+      return getDefaultState()
+    }
   })
 
-  // Renamed and destructured the parameter
-  const updateGlobalState = (data: Partial<GlobalState>): void => {
-    setState((prevState) => ({
-      ...prevState,
-      ...data,
-    }))
+  const setGlobalState = (data: Partial<GlobalState>): void => {
+    const newState = { ...state, ...data }
+    setState(newState)
+    try {
+      localStorage.setItem('globalState', JSON.stringify(newState))
+    } catch (error) {
+      console.error('Error parsing globalState from localStorage:', error)
+    }
   }
 
-  const globalStateValue = useMemo(
-    () => ({ state, setGlobalState: updateGlobalState }),
-    [state],
-  )
+  const globalStateValue = useMemo(() => ({ state, setGlobalState }), [state])
 
   return (
     <globalContext.Provider value={globalStateValue}>

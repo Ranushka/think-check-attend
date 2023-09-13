@@ -47,11 +47,10 @@ export default function Home() {
         <Image
           alt="home hero"
           fill
-          src={'/images/home/vecteezy_abstract.jpg'}
-          // src={'/images/home/hero.webp'}
+          src={'/images/home/hero_white.jpg'}
           className="absolute inset-0 -z-10 h-full w-full object-cover object-top opacity-20"
         />
-        {/* 
+        {/*
         <div className="absolute text-gray-500 bottom-5 right-8 text-xs">
           Picture is taken during <br />
           <strong>management conference</strong> held in{' '}

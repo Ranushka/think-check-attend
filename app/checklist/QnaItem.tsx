@@ -9,14 +9,19 @@ const QnaItem = ({ question, answer }: any) => {
   } = useGlobal()
 
   const handleAnswerChange = (question: any, answer: any) => {
+    const updatedAnswers = {
+      ...userAnswers,
+      [question]: answer,
+    }
     setGlobalState({
-      userAnswers: {
-        ...userAnswers,
-        [question]: answer,
-      },
+      userAnswers: updatedAnswers,
     })
 
-    console.log('userAnswers--->>', userAnswers)
+    try {
+      localStorage.setItem('userAnswers', JSON.stringify(updatedAnswers))
+    } catch (error) {
+      console.log('Error parsing userAnswers from localStorage:', error)
+    }
   }
 
   if (!answer) return <></>

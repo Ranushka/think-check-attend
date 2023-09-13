@@ -36,15 +36,7 @@ export default function CheckListPage({ searchParams }: any) {
 
   return (
     <main className="relative ">
-      <div className="relative isolate overflow-hidden pt-14 h-28">
-        {/* <Image
-          alt="home hero"
-          fill
-          src={'/images/home/vecteezy_abstract.jpg'}
-          // src={'/images/home/hero.webp'}
-          className="absolute inset-0 -z-10 h-full w-full object-cover object-top opacity-20"
-        /> */}
-      </div>
+      <div className="relative isolate overflow-hidden pt-14 h-28"></div>
 
       <div className="sticky top-0 bg-primary-50 z-20 py-4">
         <div className="max-w-7xl mx-auto px-5 flex justify-between items-center">
