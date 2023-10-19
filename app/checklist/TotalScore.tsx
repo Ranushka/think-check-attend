@@ -24,9 +24,9 @@ export default function TotalScore() {
 
   let scoreColorClass
 
-  if (scoreIs > 2) {
+  if (scoreIs > 20) {
     scoreColorClass = 'text-usp-attend'
-  } else if (scoreIs > 1) {
+  } else if (scoreIs > 10) {
     scoreColorClass = 'text-usp-check'
   } else {
     scoreColorClass = 'text-usp-think'
@@ -34,7 +34,7 @@ export default function TotalScore() {
 
   return (
     <div className="text-lg">
-      Total Score:
+      Confidence Score:
       <span className={classNames('pl-2 font-black text-2xl', scoreColorClass)}>
         {scoreIs}
       </span>

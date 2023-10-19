@@ -84,14 +84,14 @@ const SectionsJen = ({ items }: any) => {
   return (
     <div className="pl-4">
       {items.map((item: any, index: number) => {
-        const isOpen = index === 0
+        // const isOpen = index === 0
 
         return (
           <Disclosure
             as="div"
             key={index}
             className="p-6 pr-0 pb-0"
-            defaultOpen={isOpen}
+            // defaultOpen={isOpen}
           >
             {({ open }) => (
               <div>
@@ -130,23 +130,17 @@ const FormGenerator = ({ formatedData }: any) => {
     state: { userAnswers, workingTab },
     setGlobalState,
   } = useGlobal()
-  useEffect(() => {}, [workingTab])
+
+  // useEffect(() => {}, [workingTab])
 
   return (
     <div className="p-8 pt-0">
       {formatedData.map((item: any, index: number) => {
         const formattedIndex = (index + 1).toString().padStart(2, '0')
-        const isOpen = workingTab === index
-
-        // console.log('workingTab-->', workingTab)
+        // const isOpen = workingTab === index
 
         const handleDisclosureOpen = () => {
-          // setGlobalState({ ...workingTab, parent: index })
-          // if (isOpen) {
           setGlobalState({ workingTab: index })
-          // } else if (workingTab === index) {
-          //   setGlobalState({ workingTab: null })
-          // }
         }
 
         return (
@@ -154,32 +148,40 @@ const FormGenerator = ({ formatedData }: any) => {
             as="div"
             key={index}
             className="pt-6 pb-4"
-            defaultOpen={isOpen}
+            // defaultOpen={isOpen}
           >
             {({ open }) => (
               <div>
-                {/* {JSON.stringify(index)} */}
-                <Disclosure.Button
-                  onClick={handleDisclosureOpen}
-                  className="flex w-full items-start justify-between text-left text-gray-900"
+                {/* - {JSON.stringify(workingTab)} - */}
+                <div
+                  className="sticky top-0 bg-white z-10"
+                  style={{ backdropFilter: 'blur(8px)' }}
                 >
-                  <div className="flex items-center">
-                    <span className="text-gray-300 mr-2 text-xl -ml-6">
-                      {formattedIndex}
+                  <Disclosure.Button
+                    onClick={handleDisclosureOpen}
+                    className="flex w-full items-start justify-between text-left text-gray-900 stickyTitle"
+                  >
+                    <div className="flex items-center">
+                      <span className="text-gray-300 mr-2 text-xl -ml-6">
+                        {formattedIndex}
+                      </span>
+                      <h2 className="text-2xl text-gray-600" id={item.CATEGORY}>
+                        {item.CATEGORY}
+                      </h2>
+                    </div>
+                    <span className="ml-6 flex h-7 items-center">
+                      {open ? (
+                        <MinusSmallIcon
+                          className="h-6 w-6"
+                          aria-hidden="true"
+                        />
+                      ) : (
+                        <PlusSmallIcon className="h-6 w-6" aria-hidden="true" />
+                      )}
                     </span>
-                    <h2 className="text-2xl text-gray-600" id={item.CATEGORY}>
-                      {item.CATEGORY}
-                    </h2>
-                  </div>
-                  <span className="ml-6 flex h-7 items-center">
-                    {open ? (
-                      <MinusSmallIcon className="h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <PlusSmallIcon className="h-6 w-6" aria-hidden="true" />
-                    )}
-                  </span>
-                </Disclosure.Button>
-
+                  </Disclosure.Button>
+                </div>
+                {/* End of sticky section */}
                 <Disclosure.Panel as="dd" className="mt-2">
                   <SectionsJen items={item.SECTIONS} />
                 </Disclosure.Panel>

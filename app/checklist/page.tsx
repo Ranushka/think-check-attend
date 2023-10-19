@@ -39,26 +39,17 @@ export default function CheckListPage({ searchParams }: any) {
     <main className="relative ">
       <div className="relative isolate overflow-hidden pt-14 h-28"></div>
 
-      <div className=" top-0 bg-primary-50 z-20 py-4">
+      {/* <div className=" top-0 bg-primary-50 z-20 py-4">
         <div className="max-w-7xl mx-auto px-5 flex justify-between items-center">
           <div>
-            {q ? (
-              <div>
-                <div className="text-sm"> You are evaluvating conference</div>
-                <div className="font-semibold">{q}</div>
-              </div>
-            ) : (
-              <div>
-                <div className="text-sm">Folowing is your checklist</div>
-                <div className="font-semibold">
-                  For better help include your conference name or website URL.
-                </div>
-              </div>
-            )}
+            <div className="text-sm">Folowing is your checklist</div>
+            <div className="font-semibold">
+              For better help include your conference name or website URL.
+            </div>
           </div>
           <TotalScore />
         </div>
-      </div>
+      </div> */}
 
       <div className="max-w-7xl mx-auto pt-10 flex justify-between">
         <div className="max-w-2xl w-full" id="user_content">
@@ -66,11 +57,12 @@ export default function CheckListPage({ searchParams }: any) {
         </div>
 
         <div
-          className="max-w-xs bg-primary-50 z-10 w-full p-5 h-[calc(100%-100px)]"
+          className="max-w-xs bg-primary-50 z-10 w-full p-5 h-[calc(100%-100px)] sticky -top-1"
           id="bot_content"
         >
-          Our bot is checking out the query you made.
-          <GoogleSearch query={q} />
+          Try to fill the information much as possible
+          {/* <GoogleSearch query={q} /> */}
+          <TotalScore />
         </div>
       </div>
     </main>

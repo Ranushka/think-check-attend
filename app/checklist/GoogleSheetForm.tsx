@@ -25,9 +25,7 @@ async function getData() {
 const GoogleSheetForm = async () => {
   const sheetDataJson = await getData()
 
-  return (
-    <div>{sheetDataJson && <FormGenerator formatedData={sheetDataJson} />}</div>
-  )
+  return sheetDataJson && <FormGenerator formatedData={sheetDataJson} />
 }
 
 export default GoogleSheetForm
