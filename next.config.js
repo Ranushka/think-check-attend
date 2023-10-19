@@ -8,6 +8,10 @@ module.exports = {
 
     return config
   },
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ['127.0.0.1', 'assets.tina.io'],
+  },
   async rewrites() {
     return [
       {
