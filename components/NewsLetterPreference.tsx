@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { Combobox } from '@headlessui/react'
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../helpers/classNames'
 
 const people = [
   { id: 1, name: 'Leslie Alexander' },

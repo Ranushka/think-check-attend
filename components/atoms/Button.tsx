@@ -1,4 +1,4 @@
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../../helpers/classNames'
 import React, { ButtonHTMLAttributes } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

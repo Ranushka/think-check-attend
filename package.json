@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && tinacms build && next build",
+    "start": "tinacms build && tinacms build && next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.16",
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/forms": "^0.5.6",
+    "@tinacms/cli": "^1.5.29",
     "@types/node": "20.4.8",
     "@types/papaparse": "^5.3.8",
     "@types/react": "18.2.18",
@@ -28,6 +29,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.3",
+    "tinacms": "^1.5.20",
     "typescript": "5.1.6"
   },
   "devDependencies": {

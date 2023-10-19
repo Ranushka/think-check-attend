@@ -1,8 +1,8 @@
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../helpers/classNames'
 import Image from 'next/image'
 import Link from './atoms/Link'
 
-const people = [
+const list = [
   {
     name: 'Think.',
     img: '/images/usp/think.png',
@@ -93,7 +93,7 @@ const people = [
   },
 ]
 
-export default function UspDetailList() {
+export default function OurApproch() {
   return (
     <div className="bg-white py-24 md:py-32">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-5">
@@ -107,7 +107,7 @@ export default function UspDetailList() {
           </p>
         </div>
         <ul className="-mt-12 space-y-12 divide-y divide-gray-200 xl:col-span-3">
-          {people.map((person) => (
+          {list.map((person) => (
             <li
               key={person.name}
               className="flex flex-col gap-10 pt-12 sm:flex-row"

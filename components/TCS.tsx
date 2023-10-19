@@ -1,4 +1,4 @@
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../helpers/classNames'
 import Image from 'next/image'
 import Link from './atoms/Link'
 
@@ -39,7 +39,7 @@ export default function TSC() {
               <Link
                 href="https://thinkchecksubmit.org/"
                 target="_blank"
-                className="text-2xl underline mt-5 block"
+                className="text-3xl underline mt-5 block"
               >
                 https://<span className="text-usp-think">think</span>
                 <span className="text-usp-check">check</span>

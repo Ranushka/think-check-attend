@@ -1,34 +1,32 @@
 'use client'
 
 import useGlobal from '@/context/globalContext'
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../../helpers/classNames'
 
-const calculateFinalCount = (scoreCard: any) => {
-  if (scoreCard) {
-    const totalScore: any = Object.values(scoreCard).reduce(
-      (total: any, value: any) => total + value,
-      0,
-    )
-    return String(totalScore.toFixed(2))
+const calculateFinalCount = (userAnswers: any) => {
+  let totalS = 0
+
+  for (const key in userAnswers) {
+    if (userAnswers.hasOwnProperty(key) && userAnswers[key]?.s) {
+      totalS += parseInt(userAnswers[key]?.s)
+    }
   }
 
-  return '0-0'
+  return totalS ? totalS : 0
 }
 
-export default function TotalScore({ searchParams }: any) {
-  const q = searchParams?.q
-
+export default function TotalScore() {
   const {
-    state: { scoreCard },
+    state: { scoreCard, userAnswers },
   } = useGlobal()
 
-  const scoreIs = calculateFinalCount(scoreCard)
+  const scoreIs = calculateFinalCount(userAnswers)
 
   let scoreColorClass
 
-  if (parseInt(scoreIs) > 2) {
+  if (scoreIs > 2) {
     scoreColorClass = 'text-usp-attend'
-  } else if (parseInt(scoreIs) > 1) {
+  } else if (scoreIs > 1) {
     scoreColorClass = 'text-usp-check'
   } else {
     scoreColorClass = 'text-usp-think'
@@ -45,36 +43,35 @@ export default function TotalScore({ searchParams }: any) {
 }
 
 /* 
+<div
+    className="max-w-xs bottom-0 fixed right-0 bg-primary-50 z-10 w-full p-5 h-[calc(100%-100px)]"
+    id="bot_content"
+  >
+    Our bot is checking out the query you made.
+</div>
 
- <div
-          className="max-w-xs bottom-0 fixed right-0 bg-primary-50 z-10 w-full p-5 h-[calc(100%-100px)]"
-          id="bot_content"
-        >
+<div className="max-w-7xl mx-auto pt-20 flex justify-between relative">
+  <div>
+    <div className="sticky top-0 ...">A</div>
+    <div>
+      <div>
+        <strong>Andrew Alfred</strong>
+      </div>
+      <div>
+        <strong>Aisha Houston</strong>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div className="sticky top-0">B</div>
+    <div>
+      <div>
+        <div className="max-w-xl sticky top-0" id="bot_content">
           Our bot is checking out the query you made.
         </div>
-
- <div className="max-w-7xl mx-auto pt-20 flex justify-between relative">
-        <div>
-          <div className="sticky top-0 ...">A</div>
-          <div>
-            <div>
-              <strong>Andrew Alfred</strong>
-            </div>
-            <div>
-              <strong>Aisha Houston</strong>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="sticky top-0">B</div>
-          <div>
-            <div>
-              <div className="max-w-xl sticky top-0" id="bot_content">
-                Our bot is checking out the query you made.
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+    </div>
+  </div>
+</div>
 
 */

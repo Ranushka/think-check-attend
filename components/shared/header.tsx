@@ -6,7 +6,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '@/components/Logo'
 import Link from '../atoms/Link'
 import Button from '../atoms/Button'
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../../helpers/classNames'
+import { tinaField, useTina } from 'tinacms/dist/react'
 const isDarkImage = false
 
 const navigation = [
@@ -15,53 +16,55 @@ const navigation = [
   { name: 'THINK CHECK SUBMIT', href: '#' },
 ]
 
-export default function Header() {
+export default function Header({ globalData }: any) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const {
+    data: { global },
+  }: any = useTina(globalData)
 
   return (
     <header
       className={classNames(
-        'absolute inset-x-0 top-0 z-50',
+        'absolute inset-x-0 top-0 z-50 max-w-7xl m-auto',
         isDarkImage ? 'text-white' : 'text-gray-900',
       )}
     >
       <nav
-        className="flex items-center justify-between p-6 lg:px-8"
+        className="flex items-center justify-between p-6 pt-0 lg:px-8 flex-col lg:flex-row"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <Logo />
-        </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400"
-            onClick={() => setMobileMenuOpen(true)}
+          <div
+            className="bg-white py-4 px-6 rounded-b-2xl"
+            data-tina-field={tinaField(global, 'logo')}
           >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
+            <Logo src={global.logo} />
+          </div>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
+
+        <div
+          className="flex gap-x-6 lg:gap-x-8 items-center"
+          data-tina-field={tinaField(global)}
+        >
+          {global?.topNav.map((item: any) => (
+            <Link
+              key={item.label}
               href={item.href}
               className="text-sm font-semibold leading-6"
+              data-tina-field={tinaField(item)}
             >
-              {item.name}
-            </a>
+              {item.label}
+            </Link>
           ))}
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link href={'/checklist'}>
+
+          <Link href={'/checklist'} className="hidden lg:flex">
             <Button variant="primary" className="font-semibold" size="sm">
-              CONFERENCE CHECKER
+              Validate your conference
             </Button>
           </Link>
         </div>
       </nav>
-      <Dialog
+      {/* <Dialog
         as="div"
         className="lg:hidden"
         open={mobileMenuOpen}
@@ -70,7 +73,7 @@ export default function Header() {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
           <div className="flex items-center justify-between">
-            <Logo />
+            <Logo src={global.logo} />
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-400"
@@ -82,29 +85,25 @@ export default function Header() {
           </div>
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/25">
-              <div className="space-y-2 py-6">
-                {navigation.map((item) => (
+              <div
+                className="space-y-2 py-6"
+                data-tina-field={tinaField(global)}
+              >
+                {global?.topNav.map((item: any) => (
                   <a
-                    key={item.name}
+                    key={item.label}
                     href={item.href}
+                    data-tina-field={tinaField(item)}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800"
                   >
-                    {item.name}
+                    {item.label}
                   </a>
                 ))}
-              </div>
-              <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800"
-                >
-                  Log in
-                </a>
               </div>
             </div>
           </div>
         </Dialog.Panel>
-      </Dialog>
+      </Dialog> */}
     </header>
   )
 }

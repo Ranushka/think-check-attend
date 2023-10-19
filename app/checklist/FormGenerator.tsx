@@ -4,7 +4,7 @@ import { Disclosure } from '@headlessui/react'
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 
 import useGlobal from '@/context/globalContext'
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../../helpers/classNames'
 import React, { useEffect } from 'react'
 import QnaItem from './QnaItem'
 
@@ -12,10 +12,13 @@ const DipQuestionsJen = ({ questions }: any) => {
   return (
     <div>
       {questions.map((qItem: any, index: number) => {
-        const { DEPENDENT_QUESTION, DEPENDENT_ANSWERS } = qItem
+        const { DEPENDENT_QUESTION, DEPENDENT_ANSWERS, SCORE, ID } = qItem
+
         return (
           <QnaItem
+            ID={ID}
             key={index}
+            score={SCORE}
             question={DEPENDENT_QUESTION}
             answer={DEPENDENT_ANSWERS}
           />
@@ -33,13 +36,28 @@ const QuestionsJen = ({ questions }: any) => {
   return (
     <div className="pt-4">
       {questions.map((qItem: any, index: number) => {
-        const { QUESTION, ANSWERS, TRIGGER, DEPENDENT_QUESTIONS } = qItem
+        const {
+          QUESTION,
+          ANSWERS,
+          TRIGGER,
+          DEPENDENT_QUESTIONS,
+          SCORE,
+          NUMBER,
+          ID,
+        } = qItem
 
-        const showSubQuestions = userAnswers[QUESTION] === TRIGGER
+        const showSubQuestions = userAnswers[ID]?.a === TRIGGER
 
         return (
           <div key={index}>
-            <QnaItem question={QUESTION} answer={ANSWERS.ANSWER} />
+            <QnaItem
+              ID={ID}
+              question={QUESTION}
+              answer={ANSWERS.ANSWER}
+              score={SCORE}
+              number={NUMBER}
+              DEPENDENT_QUESTIONS={DEPENDENT_QUESTIONS}
+            />
 
             {DEPENDENT_QUESTIONS.length !== 0 && (
               <div
@@ -120,7 +138,7 @@ const FormGenerator = ({ formatedData }: any) => {
         const formattedIndex = (index + 1).toString().padStart(2, '0')
         const isOpen = workingTab === index
 
-        console.log('workingTab-->', workingTab)
+        // console.log('workingTab-->', workingTab)
 
         const handleDisclosureOpen = () => {
           // setGlobalState({ ...workingTab, parent: index })
@@ -140,7 +158,7 @@ const FormGenerator = ({ formatedData }: any) => {
           >
             {({ open }) => (
               <div>
-                {JSON.stringify(index)}
+                {/* {JSON.stringify(index)} */}
                 <Disclosure.Button
                   onClick={handleDisclosureOpen}
                   className="flex w-full items-start justify-between text-left text-gray-900"
@@ -149,7 +167,9 @@ const FormGenerator = ({ formatedData }: any) => {
                     <span className="text-gray-300 mr-2 text-xl -ml-6">
                       {formattedIndex}
                     </span>
-                    <h2 className="text-2xl text-gray-600">{item.CATEGORY}</h2>
+                    <h2 className="text-2xl text-gray-600" id={item.CATEGORY}>
+                      {item.CATEGORY}
+                    </h2>
                   </div>
                   <span className="ml-6 flex h-7 items-center">
                     {open ? (

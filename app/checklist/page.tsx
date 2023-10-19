@@ -1,7 +1,8 @@
 import GoogleSheetForm from './GoogleSheetForm'
 import GoogleSearch from './GoogleSearch'
 import TotalScore from './TotalScore'
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../../helpers/classNames'
+import TotalScoreBottom from './TotalScoreBottom'
 
 const calculateFinalCount = (scoreCard: any) => {
   if (scoreCard) {
@@ -38,7 +39,7 @@ export default function CheckListPage({ searchParams }: any) {
     <main className="relative ">
       <div className="relative isolate overflow-hidden pt-14 h-28"></div>
 
-      <div className="sticky top-0 bg-primary-50 z-20 py-4">
+      <div className=" top-0 bg-primary-50 z-20 py-4">
         <div className="max-w-7xl mx-auto px-5 flex justify-between items-center">
           <div>
             {q ? (
@@ -59,7 +60,7 @@ export default function CheckListPage({ searchParams }: any) {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto pt-10 flex justify-between relative">
+      <div className="max-w-7xl mx-auto pt-10 flex justify-between">
         <div className="max-w-2xl w-full" id="user_content">
           <GoogleSheetForm />
         </div>
@@ -75,38 +76,3 @@ export default function CheckListPage({ searchParams }: any) {
     </main>
   )
 }
-
-/* 
-
- <div
-          className="max-w-xs bottom-0 fixed right-0 bg-primary-50 z-10 w-full p-5 h-[calc(100%-100px)]"
-          id="bot_content"
-        >
-          Our bot is checking out the query you made.
-        </div>
-
- <div className="max-w-7xl mx-auto pt-20 flex justify-between relative">
-        <div>
-          <div className="sticky top-0 ...">A</div>
-          <div>
-            <div>
-              <strong>Andrew Alfred</strong>
-            </div>
-            <div>
-              <strong>Aisha Houston</strong>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div className="sticky top-0">B</div>
-          <div>
-            <div>
-              <div className="max-w-xl sticky top-0" id="bot_content">
-                Our bot is checking out the query you made.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-*/

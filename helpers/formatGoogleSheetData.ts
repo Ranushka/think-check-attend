@@ -19,6 +19,8 @@ const formatGoogleSheetData = (data: any) => {
       DEPENDENT_QUESTION,
       DEPENDENT_ANSWER,
       TRIGGER,
+      SCORE,
+      ID,
     } = item
 
     if (CATEGORY) {
@@ -44,6 +46,8 @@ const formatGoogleSheetData = (data: any) => {
         ANSWERS: [],
         TRIGGER,
         DEPENDENT_QUESTIONS: [],
+        SCORE: SCORE?.split(','),
+        ID,
       }
 
       currentSection.QUESTIONS.push(currentQuestion)
@@ -62,6 +66,8 @@ const formatGoogleSheetData = (data: any) => {
 
     if (DEPENDENT_QUESTION) {
       currentDependentQuestion = {
+        ID,
+        SCORE: SCORE?.split(','),
         DEPENDENT_QUESTION: toSentenceCase(DEPENDENT_QUESTION),
         DEPENDENT_ANSWERS: DEPENDENT_ANSWER.split(',').map((itm: any) =>
           itm.trim(),
@@ -69,11 +75,9 @@ const formatGoogleSheetData = (data: any) => {
       }
       currentQuestion.DEPENDENT_QUESTIONS.push(currentDependentQuestion)
     }
-
-    // if (DEPENDENT_ANSWER) {
-    //   currentDependentQuestion.DEPENDENT_ANSWERS.push(DEPENDENT_ANSWER)
-    // }
   })
+
+  // console.log('groupedData --', groupedData)
 
   return groupedData
 }

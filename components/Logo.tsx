@@ -1,12 +1,12 @@
 import React from 'react'
-import Link from '@/components/atoms/Link'
+import Link from '../components/atoms/Link'
 import Image from 'next/image'
 
 interface LogoProps {
-  width?: string
+  src: string
 }
 
-const Logo: React.FC<LogoProps> = ({ width }) => {
+const Logo: React.FC<LogoProps> = ({ src }) => {
   return (
     <Link href={'/'} aria-label="logo">
       <span className="sr-only">Think. Check. Attend.</span>
@@ -14,7 +14,8 @@ const Logo: React.FC<LogoProps> = ({ width }) => {
         alt="Think. Check. Attend. - Logo"
         width={190}
         height={54}
-        src={'/images/logo.svg'}
+        quality={100}
+        src={src}
         className="pointer-events-none"
       />
     </Link>

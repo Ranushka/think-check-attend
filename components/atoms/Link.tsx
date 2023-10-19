@@ -1,17 +1,18 @@
 import React from 'react'
 import NextLink, { LinkProps } from 'next/link'
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../../helpers/classNames'
 
 interface LinkPropsEx extends LinkProps {
   children: React.ReactNode
   className?: string
   title?: string
-  size?: 'sm' | 'md' | 'lg'
-  variant?: 'primary' | 'secondary' | 'default'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  variant?: 'primary' | 'secondary' | 'default' | 'row'
   [key: string]: any
 }
 
 const getVariant = {
+  row: '',
   primary: 'text-primary',
   secondary: 'hover:bg-primary text-primary hover:text-white',
   default: 'text-gray-900',
@@ -21,6 +22,7 @@ const getSize = {
   sm: 'text-xs',
   md: 'text-sm',
   lg: 'text-lg',
+  xl: 'text-2xl',
 }
 
 const Link: React.FC<LinkPropsEx> = ({

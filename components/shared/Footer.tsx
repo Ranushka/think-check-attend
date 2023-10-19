@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '../Logo'
+import { useTina } from 'tinacms/dist/react'
 
 const navigation = {
   solutions: [
@@ -94,13 +95,17 @@ const navigation = {
   ],
 }
 
-export default function Footer() {
+export default function Footer({ globalData }: any) {
+  const {
+    data: { global },
+  }: any = useTina(globalData)
+
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
-            <Logo />
+            <Logo src={global.logo} />
             <p className="text-sm leading-6 text-gray-600">
               Introduced by Knowledge E, welcoming support for an ethical and
               knowledgeable academic world.

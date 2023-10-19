@@ -1,0 +1,17 @@
+{
+  "topNav": [
+    {
+      "href": "/about",
+      "label": "ABOUT"
+    },
+    {
+      "href": "/resources",
+      "label": "RESOURCES"
+    },
+    {
+      "href": "https://thinkchecksubmit.org/",
+      "label": "THINK CHECK SUBMIT"
+    }
+  ],
+  "logo": "/uploads/Asset 1.png"
+}

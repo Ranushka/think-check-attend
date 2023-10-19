@@ -1,4 +1,4 @@
-import { classNames } from '@/helpers/classNames'
+import { classNames } from '../helpers/classNames'
 import Image from 'next/image'
 
 const stats = [

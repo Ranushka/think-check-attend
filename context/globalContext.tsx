@@ -45,7 +45,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
       const storedState = localStorage.getItem('globalState')
       return storedState ? JSON.parse(storedState) : getDefaultState()
     } catch (error) {
-      console.error('Error parsing globalState from localStorage:', error)
+      // console.error('Error parsing globalState from localStorage:', error)
       return getDefaultState()
     }
   })
@@ -56,7 +56,7 @@ export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
     try {
       localStorage.setItem('globalState', JSON.stringify(newState))
     } catch (error) {
-      console.error('Error parsing globalState from localStorage:', error)
+      // console.error('Error parsing globalState from localStorage:', error)
     }
   }
 

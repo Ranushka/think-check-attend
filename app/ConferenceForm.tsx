@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Button from '@/components/atoms/Button'
-import Link from '@/components/atoms/Link'
-import { classNames } from '@/helpers/classNames'
+import Button from '../components/atoms/Button'
+import Link from '../components/atoms/Link'
+import { classNames } from '../helpers/classNames'
 
 const isDarkImage = false
 
