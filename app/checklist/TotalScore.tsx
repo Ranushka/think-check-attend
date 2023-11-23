@@ -21,6 +21,7 @@ export default function TotalScore() {
   } = useGlobal()
 
   const scoreIs = calculateFinalCount(userAnswers)
+  const { message, color } = getQualityStatus(scoreIs)
 
   let scoreColorClass
 
@@ -33,13 +34,37 @@ export default function TotalScore() {
   }
 
   return (
-    <div className="text-lg">
+    <div className="text-lg" style={{ backgroundColor: color }}>
       Confidence Score:
       <span className={classNames('pl-2 font-black text-2xl', scoreColorClass)}>
         {scoreIs}
       </span>
+      <div>{message}</div>
     </div>
   )
+}
+
+type Feedback = {
+  message: string
+  color: string
+}
+
+function getQualityStatus(score: number): Feedback {
+  if (score >= 95) {
+    return { message: 'Quality', color: 'Green' }
+  } else if (score >= 85) {
+    return { message: 'Questionable quality', color: 'LightGreen' }
+  } else if (score >= 75) {
+    return { message: 'Promising low-quality', color: 'LightYellow' }
+  } else if (score >= 65) {
+    return { message: 'Low-quality', color: 'Yellow' }
+  } else if (score >= 55) {
+    return { message: 'Unacceptable low-quality', color: 'Orange' }
+  } else if (score >= 45) {
+    return { message: 'Deceptive', color: 'LightRed' }
+  } else {
+    return { message: 'Fraudulent', color: 'Red' }
+  }
 }
 
 /* 

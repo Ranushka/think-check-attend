@@ -34,7 +34,7 @@ const formatGoogleSheetData = (data: any) => {
 
     if (SECTION) {
       currentSection = { SECTION: toSentenceCase(SECTION), QUESTIONS: [] }
-      currentCategory.SECTIONS.push(currentSection)
+      currentCategory?.SECTIONS?.push(currentSection)
       currentQuestion = null
       currentAnswer = null
       currentDependentQuestion = null
@@ -50,7 +50,7 @@ const formatGoogleSheetData = (data: any) => {
         ID,
       }
 
-      currentSection.QUESTIONS.push(currentQuestion)
+      currentSection?.QUESTIONS.push(currentQuestion)
       currentAnswer = null
       currentDependentQuestion = null
     }
@@ -73,7 +73,7 @@ const formatGoogleSheetData = (data: any) => {
           itm.trim(),
         ),
       }
-      currentQuestion.DEPENDENT_QUESTIONS.push(currentDependentQuestion)
+      currentQuestion?.DEPENDENT_QUESTIONS.push(currentDependentQuestion)
     }
   })
 

@@ -7,6 +7,29 @@ const RendererMarkdown = ({ content }: any) => {
     <TinaMarkdown
       content={content}
       components={{
+        video: ({ url }: any) => {
+          let embedUrl = ''
+
+          if (url.includes('youtube.com')) {
+            const videoId = url.split('v=')[1]
+            embedUrl = `https://www.youtube.com/embed/${videoId}`
+          } else if (url.includes('vimeo.com')) {
+            const videoId = url.split('/').pop()
+            embedUrl = `https://player.vimeo.com/video/${videoId}`
+          }
+
+          return (
+            <div className="video-container">
+              {embedUrl && (
+                <iframe
+                  className="w-full h-96"
+                  src={embedUrl}
+                  allowFullScreen
+                ></iframe>
+              )}
+            </div>
+          )
+        },
         p: (props: any) => {
           return (
             <p className="text-base leading-7 text-gray-600 mb-6">
@@ -23,12 +46,14 @@ const RendererMarkdown = ({ content }: any) => {
         },
         ul: (props: any) => {
           return (
-            <ul className="list-disc pl-4 text-gray-600">{props.children}</ul>
+            <ul className="list-disc pl-4 text-gray-600 mb-8">
+              {props.children}
+            </ul>
           )
         },
         ol: (props: any) => {
           return (
-            <ol className="list-decimal pl-4 text-gray-600">
+            <ol className="list-decimal pl-4 text-gray-600 mb-8">
               {props.children}
             </ol>
           )
@@ -36,7 +61,7 @@ const RendererMarkdown = ({ content }: any) => {
         a: (props: any) => {
           return (
             <a
-              className="font-semibold text-indigo-600 hover:text-indigo-500"
+              className="font-semibold text-primary-700 hover:text-primary-800 cursor-pointer"
               href={props.href}
             >
               {props.children}

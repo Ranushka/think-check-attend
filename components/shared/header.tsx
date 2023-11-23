@@ -43,7 +43,7 @@ export default function Header({ globalData }: any) {
         </div>
 
         <div
-          className="flex gap-x-6 lg:gap-x-8 items-center"
+          className="flex gap-x-6 lg:gap-x-8 mt-6 lg:mt-0 items-center"
           data-tina-field={tinaField(global)}
         >
           {global?.topNav.map((item: any) => (

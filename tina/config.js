@@ -1,6 +1,7 @@
 import { defineConfig } from 'tinacms'
 import { global } from './configCollections/global'
 import { page } from './configCollections/page'
+import { blog } from './configCollections/blog'
 
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main'
 
@@ -20,33 +21,6 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [
-      page,
-      global,
-      {
-        name: 'post',
-        label: 'Posts',
-        path: 'content/posts',
-        fields: [
-          {
-            type: 'string',
-            name: 'title',
-            label: 'Title',
-            isTitle: true,
-            required: true,
-          },
-          {
-            type: 'rich-text',
-            name: 'body',
-            label: 'Body',
-            isBody: true,
-          },
-        ],
-        ui: {
-          // This is an DEMO router. You can remove this to fit your site
-          router: ({ document }) => `/demo/blog/${document._sys.filename}`,
-        },
-      },
-    ],
+    collections: [page, global, blog],
   },
 })

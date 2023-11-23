@@ -5,6 +5,7 @@ import { UspList } from '../../../components/UspList'
 import Link from '../../../components/atoms/Link'
 import Button from '../../../components/atoms/Button'
 import { tinaField } from 'tinacms/dist/react'
+import HeroImage from './HeroImage'
 export { heroSchema }
 
 export default function Hero({ data }: any) {
@@ -21,7 +22,7 @@ export default function Hero({ data }: any) {
             {title}
           </h1>
           <div className="max-w-xl mt-10 mb-5">
-            <div className="flex items-center gap-x-6 mt-5">
+            <div className="flex flex-col md:flex-row gap-6 items-center gap-x-6 mt-5">
               <Link href={'/checklist'}>
                 <Button variant="primary" className="font-semibold" size="lg">
                   Validate your conference
@@ -47,16 +48,16 @@ export default function Hero({ data }: any) {
             {intro}
           </p>
         </div>
-
-        {/* <UspList /> */}
       </div>
 
-      <Image
+      <HeroImage />
+
+      {/* <Image
         alt="home hero"
         fill
         src={image || ''}
         className="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-90"
-      />
+      /> */}
     </div>
   )
 }
