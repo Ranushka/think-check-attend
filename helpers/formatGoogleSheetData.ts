@@ -20,6 +20,7 @@ const formatGoogleSheetData = (data: any) => {
       DEPENDENT_ANSWER,
       TRIGGER,
       SCORE,
+      IS_MULTI,
       ID,
     } = item
 
@@ -45,6 +46,7 @@ const formatGoogleSheetData = (data: any) => {
         QUESTION,
         ANSWERS: [],
         TRIGGER,
+        IS_MULTI,
         DEPENDENT_QUESTIONS: [],
         SCORE: SCORE?.split(','),
         ID,

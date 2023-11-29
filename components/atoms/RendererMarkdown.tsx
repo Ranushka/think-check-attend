@@ -1,6 +1,7 @@
 'use client'
 
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import CheckerQuestion from './CheckerQuestion'
 
 const RendererMarkdown = ({ content }: any) => {
   return (
@@ -31,19 +32,14 @@ const RendererMarkdown = ({ content }: any) => {
           )
         },
         p: (props: any) => {
+          // console.log(props)
           return (
             <p className="text-base leading-7 text-gray-600 mb-6">
               {props.children}
             </p>
           )
         },
-        blockquote: (props: any) => {
-          return (
-            <blockquote className="text-xl font-semibold leading-8 tracking-tight text-gray-900 mb-8">
-              {props.children}
-            </blockquote>
-          )
-        },
+        CheckerQuestion: CheckerQuestion,
         ul: (props: any) => {
           return (
             <ul className="list-disc pl-4 text-gray-600 mb-8">

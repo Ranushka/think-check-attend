@@ -1,18 +1,33 @@
 'use client'
 
-import useGlobal from '@/context/globalContext'
+import useGlobal from '../../context/globalContext'
 import { classNames } from '../../helpers/classNames'
+import { answerReducer } from '@/helpers/answerReducer'
+import { useEffect, useReducer } from 'react'
 
 const calculateFinalCount = (userAnswers: any) => {
-  let totalS = 0
+  let totalScore = 0
 
   for (const key in userAnswers) {
-    if (userAnswers.hasOwnProperty(key) && userAnswers[key]?.s) {
-      totalS += parseInt(userAnswers[key]?.s)
+    if (userAnswers.hasOwnProperty(key)) {
+      const answerItem = userAnswers[key]
+
+      // Check if the answer is a multiple choice
+      if (
+        answerItem.multipleChoice &&
+        Array.isArray(answerItem.multipleChoice)
+      ) {
+        answerItem.multipleChoice.forEach((choice: any) => {
+          totalScore += parseInt(choice.score)
+        })
+      } else if (answerItem.score) {
+        // Handle single answer
+        totalScore += parseInt(answerItem.score)
+      }
     }
   }
 
-  return totalS ? totalS : 0
+  return totalScore
 }
 
 export default function TotalScore() {

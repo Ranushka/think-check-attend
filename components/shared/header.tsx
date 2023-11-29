@@ -57,7 +57,7 @@ export default function Header({ globalData }: any) {
             </Link>
           ))}
 
-          <Link href={'/checklist'} className="hidden lg:flex">
+          <Link href={'/validate'} className="hidden lg:flex">
             <Button variant="primary" className="font-semibold" size="sm">
               Validate your conference
             </Button>

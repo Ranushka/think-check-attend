@@ -11,18 +11,8 @@ export default {
   fields: [
     {
       type: 'string',
-      label: 'subtitle',
-      name: 'subtitle',
-    },
-    {
-      type: 'string',
       label: 'title',
       name: 'title',
-    },
-    {
-      type: 'string',
-      label: 'intro',
-      name: 'intro',
     },
     {
       type: 'rich-text',

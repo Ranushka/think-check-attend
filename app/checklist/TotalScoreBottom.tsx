@@ -1,6 +1,6 @@
 'use client'
 
-import useGlobal from '@/context/globalContext'
+import useGlobal from '../../context/globalContext'
 import { classNames } from '../../helpers/classNames'
 
 const calculateFinalCount = (scoreCard: any) => {

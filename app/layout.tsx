@@ -6,7 +6,7 @@ import { Inter, Nanum_Myeongjo } from 'next/font/google'
 import Header from '@/components/shared/header'
 
 import Footer from '@/components/shared/Footer'
-import { GlobalProvider } from '@/context/globalContext'
+import { GlobalProvider } from '../context/globalContext'
 import { ReactChildren } from '@/types/types'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })

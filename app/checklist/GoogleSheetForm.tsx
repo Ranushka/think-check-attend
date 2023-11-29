@@ -4,10 +4,10 @@ import FormGenerator from './FormGenerator'
 import formatGoogleSheetData from '@/helpers/formatGoogleSheetData'
 
 const CSV_FILE_URL =
-  'https://docs.google.com/spreadsheets/d/e/2PACX-1vQrIfiKbE1n08igSN2uMNJBbfe4_N_mKZSsy5t4NrWtjW7GwKAOJNXlAsUp6I9s4zQXQBbbYPF9Wn_8/pub?output=csv&v3'
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vQrIfiKbE1n08igSN2uMNJBbfe4_N_mKZSsy5t4NrWtjW7GwKAOJNXlAsUp6I9s4zQXQBbbYPF9Wn_8/pub?output=csv&v4'
 
 async function getData() {
-  const response = await fetch(CSV_FILE_URL)
+  const response = await fetch(CSV_FILE_URL, { cache: 'no-store' })
 
   if (!response.ok) {
     throw new Error('Failed to fetch data')

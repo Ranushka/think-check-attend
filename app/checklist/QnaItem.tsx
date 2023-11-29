@@ -1,46 +1,72 @@
-import useGlobal from '@/context/globalContext'
+import useGlobal from '../../context/globalContext'
 import { classNames } from '../../helpers/classNames'
-import React, { useEffect } from 'react'
+import React, { useEffect, useReducer } from 'react'
+import { answerReducer } from '@/helpers/answerReducer'
 
-const QnaItem = ({ ID, question, answer, score, DEPENDENT_QUESTIONS }: any) => {
-  const {
-    setGlobalState,
-    state: { userAnswers, finalScore },
-  } = useGlobal()
+interface AnswerAction {
+  type: 'SET_SINGLE_ANSWER' | 'ADD_MULTIPLE_CHOICE' | 'REMOVE_MULTIPLE_CHOICE'
+  questionId: string
+  answer: string
+  score: number
+}
 
-  // useEffect(() => {}, [userAnswers])
+const QnaItem = ({
+  ID,
+  question,
+  answer,
+  score,
+  DEPENDENT_QUESTIONS,
+  IS_MULTI,
+}: any) => {
+  const [userAnswers, dispatch] = useReducer(answerReducer, {})
+  const { setGlobalState, state: globalState } = useGlobal()
+  const type = IS_MULTI ? 'checkbox' : 'radio'
 
   const handleAnswerChange = (
-    ID: any,
-    DEPENDENT_QUESTIONS: any,
-    answer: any,
-    score: any,
+    questionId: any,
+    optItem: any,
+    ansScore: any,
+    checked: any,
   ) => {
-    console.log('DEPENDENT_QUESTIONS--->', DEPENDENT_QUESTIONS)
-    const resetAns: any = {}
-
-    if (DEPENDENT_QUESTIONS) {
-      DEPENDENT_QUESTIONS.map((item: any) => {
-        resetAns[item.ID] = null
-      })
+    let actionType: AnswerAction['type']
+    if (IS_MULTI) {
+      actionType = checked ? 'ADD_MULTIPLE_CHOICE' : 'REMOVE_MULTIPLE_CHOICE'
+    } else {
+      actionType = 'SET_SINGLE_ANSWER'
     }
 
-    const updatedAnswers = {
-      ...userAnswers,
-      ...resetAns,
-      [ID]: { a: answer, s: score },
+    dispatch({ type: actionType, questionId, answer: optItem, score: ansScore })
+
+    let updatedGlobalAnswers = globalState.userAnswers
+
+    if (IS_MULTI) {
+      const existingChoices =
+        updatedGlobalAnswers[questionId]?.multipleChoice || []
+      const choice = { answer: optItem, score: ansScore }
+
+      if (checked) {
+        updatedGlobalAnswers = {
+          ...updatedGlobalAnswers,
+          [questionId]: { multipleChoice: [...existingChoices, choice] },
+        }
+      } else {
+        updatedGlobalAnswers = {
+          ...updatedGlobalAnswers,
+          [questionId]: {
+            multipleChoice: existingChoices.filter(
+              (existingChoice: any) => existingChoice.answer !== optItem,
+            ),
+          },
+        }
+      }
+    } else {
+      updatedGlobalAnswers = {
+        ...updatedGlobalAnswers,
+        [questionId]: { answer: optItem, score: ansScore },
+      }
     }
 
-    setGlobalState({
-      finalScore: finalScore + parseInt(score),
-      userAnswers: updatedAnswers,
-    })
-
-    try {
-      localStorage.setItem('userAnswers', JSON.stringify(updatedAnswers))
-    } catch (error) {
-      console.log('Error parsing userAnswers from localStorage:', error)
-    }
+    setGlobalState({ ...globalState, userAnswers: updatedGlobalAnswers })
   }
 
   if (!answer) return <></>
@@ -50,8 +76,17 @@ const QnaItem = ({ ID, question, answer, score, DEPENDENT_QUESTIONS }: any) => {
       <p className="mb-2 text-gray-700">{question}</p>
 
       <div className={answer.length < 3 ? 'flex flex-wrap' : ''}>
-        {answer.map((optItem: any, answerIndex: number) => {
-          const isSelected = userAnswers[ID]?.a === optItem
+        {answer.map((optItem: true, answerIndex: number) => {
+          let isSelected = false
+
+          if (type === 'checkbox') {
+            isSelected = !!globalState.userAnswers[ID]?.multipleChoice.some(
+              (choice: any) => choice.answer === optItem,
+            )
+          } else {
+            isSelected = globalState.userAnswers[ID]?.answer === optItem
+          }
+
           const ansScore = score[answerIndex]
 
           return (
@@ -64,10 +99,9 @@ const QnaItem = ({ ID, question, answer, score, DEPENDENT_QUESTIONS }: any) => {
             >
               <input
                 name={question}
-                value={optItem}
-                type="radio"
-                onChange={() =>
-                  handleAnswerChange(ID, DEPENDENT_QUESTIONS, optItem, ansScore)
+                type={type}
+                onChange={(e) =>
+                  handleAnswerChange(ID, optItem, ansScore, e.target.checked)
                 }
                 checked={isSelected}
                 className="h-4 w-4 mr-2 border-2 border-primary text-primary-600 focus:ring-primary-600 cursor-pointer"

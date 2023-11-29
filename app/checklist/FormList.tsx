@@ -1,5 +1,5 @@
 'use client'
-import useGlobal from '@/context/globalContext'
+import useGlobal from '../../context/globalContext'
 import React, { useState } from 'react'
 
 interface Option {

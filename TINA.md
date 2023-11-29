@@ -62,7 +62,7 @@
           description: 'Alt text for the image',
         },
       ],
-    },
+    }
 
 ```
 
@@ -85,5 +85,27 @@
     name: 'locations',
     label: 'locations',
     list: true,
+}
+```
+
+### Select from the list
+
+```
+{
+  component: 'select',
+  name: 'authors',
+  label: 'Author',
+  description: 'Select an author for this post',
+  options: ['Arundhati Roy', 'Ruth Ozeki', 'Zadie Smith'],
+}
+```
+
+### Boolean just yes/no
+
+```
+{
+  type: 'boolean',
+  name: 'published',
+  label: 'Published'
 }
 ```

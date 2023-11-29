@@ -2,7 +2,7 @@ import Title, { titleSchema } from './Title'
 import Hero, { heroSchema } from './Hero'
 import QnA, { qnaSchema } from './QnA'
 import LocationsList, { locationsListSchema } from './LocationsList'
-import AboutPage, { AboutPageSchema } from './AboutPage'
+import WizardSteps, { WizardStepsSchema } from './WizardSteps'
 import OurMission, { OurMissionSchema } from './OurMission'
 import OurApproch, { OurApprochSchema } from './OurApproch'
 import ThinkCheckSubmit, { ThinkCheckSubmitSchema } from './ThinkCheckSubmit'
@@ -12,7 +12,7 @@ const blockComponents = {
   Hero,
   QnA,
   LocationsList,
-  AboutPage,
+  WizardSteps,
   OurMission,
   OurApproch,
   ThinkCheckSubmit,
@@ -23,7 +23,7 @@ const blockSchemas = [
   heroSchema,
   qnaSchema,
   locationsListSchema,
-  AboutPageSchema,
+  WizardStepsSchema,
   ThinkCheckSubmitSchema,
   OurApprochSchema,
   OurMissionSchema,

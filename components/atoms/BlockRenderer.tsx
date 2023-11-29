@@ -13,7 +13,8 @@ const BlockRenderer = ({ rawData }: any) => {
 
   return blocksList.map(function (block: any, i: number) {
     return (
-      <div key={i} data-tina-field={tinaField(block)}>
+      // <div key={i} data-tina-field={tinaField(block)}>
+      <div key={i}>
         <Block block={block} />
       </div>
     )

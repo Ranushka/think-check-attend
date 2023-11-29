@@ -1,24 +1,15 @@
 import { blockSchemas } from '../../components/blocks'
 
 export const page = {
+  label: 'Pages',
   name: 'page',
-  label: 'Page',
-  path: 'content/page',
-  format: 'mdx',
-  ui: {
-    router: ({ document }: any) => {
-      if (document._sys.filename === 'home') {
-        return '/'
-      }
-
-      return `/${document._sys.filename}`
-    },
-  },
   fields: [
     {
       type: 'string',
-      name: 'title',
       label: 'Title',
+      name: 'title',
+      description:
+        'The title of the page. This is used to display the title in the CMS',
       isTitle: true,
       required: true,
     },
