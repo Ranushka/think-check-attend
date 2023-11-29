@@ -3,29 +3,39 @@
 import useGlobal from '../../context/globalContext'
 import React from 'react'
 
-const CheckerQuestion = ({ question, answersList, isCheckbox }: any) => {
+const CheckerQuestion = (props: any) => {
+  const { question, answersList, isCheckbox, currentSteTitle } = props
+
   const { setGlobalState, state: globalState } = useGlobal()
 
   let userAnswersState = globalState.userAnswers
+
+  const stepAnswers = userAnswersState[currentSteTitle] || {}
 
   if (!answersList || answersList.length === 0) {
     return <div>Please create some answers</div>
   }
 
   const handleAnswerChange = (answerText: any) => {
-    const updatedUserAnswers = {
-      ...userAnswersState,
-      [question]: isCheckbox ? userAnswersState[question] || [] : answerText,
-    }
+    const questionAnswers = isCheckbox
+      ? stepAnswers[question] || []
+      : answerText
 
     if (isCheckbox) {
-      if (updatedUserAnswers[question].includes(answerText)) {
-        updatedUserAnswers[question] = updatedUserAnswers[question].filter(
+      if (questionAnswers.includes(answerText)) {
+        stepAnswers[question] = questionAnswers.filter(
           (item: any) => item !== answerText,
         )
       } else {
-        updatedUserAnswers[question].push(answerText)
+        stepAnswers[question] = [...questionAnswers, answerText]
       }
+    } else {
+      stepAnswers[question] = answerText
+    }
+
+    const updatedUserAnswers = {
+      ...userAnswersState,
+      [currentSteTitle]: stepAnswers,
     }
 
     setGlobalState({
@@ -33,7 +43,11 @@ const CheckerQuestion = ({ question, answersList, isCheckbox }: any) => {
     })
   }
 
-  const renderOptions = (id: string, question: string) => {
+  const renderOptions = (
+    id: string,
+    question: string,
+    currentSteTitle: string,
+  ) => {
     return answersList.map((answerOption: any, i: number) => {
       const answerOptionData = answerOption.split('|')
       const answerText = answerOptionData?.[0]
@@ -47,7 +61,7 @@ const CheckerQuestion = ({ question, answersList, isCheckbox }: any) => {
                 type="checkbox"
                 value={answerOption}
                 name={id}
-                checked={userAnswersState[question]?.includes(answerOption)}
+                checked={stepAnswers[question]?.includes(answerOption)}
                 onChange={() => handleAnswerChange(answerOption)}
               />
               {answerText}
@@ -59,7 +73,7 @@ const CheckerQuestion = ({ question, answersList, isCheckbox }: any) => {
                 type="radio"
                 value={answerOption}
                 name={id}
-                checked={userAnswersState[question]?.includes(answerOption)}
+                checked={stepAnswers[question]?.includes(answerOption)}
                 onChange={() => handleAnswerChange(answerOption)}
               />
               {answerText}
@@ -73,9 +87,9 @@ const CheckerQuestion = ({ question, answersList, isCheckbox }: any) => {
   const qId = getId(question)
 
   return (
-    <div className="p-4 bg-gray-50 rounded-xl">
+    <div className="p-4 bg-gray-50 rounded-xl mb-4">
       <p className="text-lg mb-2">{question}</p>
-      {renderOptions(qId, question)}
+      {renderOptions(qId, question, currentSteTitle)}
     </div>
   )
 }

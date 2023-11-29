@@ -3,10 +3,11 @@
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import CheckerQuestion from './CheckerQuestion'
 
-const RendererMarkdown = ({ content }: any) => {
+const RendererMarkdown = (propsParent: any) => {
   return (
     <TinaMarkdown
-      content={content}
+      {...propsParent}
+      // content={content}
       components={{
         video: ({ url }: any) => {
           let embedUrl = ''
@@ -39,7 +40,11 @@ const RendererMarkdown = ({ content }: any) => {
             </p>
           )
         },
-        CheckerQuestion: CheckerQuestion,
+
+        // CheckerQuestion: CheckerQuestion,
+        CheckerQuestion: (props: any) => {
+          return CheckerQuestion({ ...props, ...propsParent })
+        },
         ul: (props: any) => {
           return (
             <ul className="list-disc pl-4 text-gray-600 mb-8">
@@ -58,7 +63,7 @@ const RendererMarkdown = ({ content }: any) => {
           return (
             <a
               className="font-semibold text-primary-700 hover:text-primary-800 cursor-pointer"
-              href={props.href}
+              href={props.url}
             >
               {props.children}
             </a>

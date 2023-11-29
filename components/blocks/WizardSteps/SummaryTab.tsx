@@ -3,11 +3,80 @@ import useGlobal from '../../../context/globalContext'
 import TotalScore from './TotalScore'
 
 const ScoreBreakdown = () => {
-  const { setGlobalState, state: globalState } = useGlobal()
+  const { state: globalState } = useGlobal()
+
+  const cusMsg: any = {
+    DISCOVERY: 'this is much positive oganic way is alwas better',
+    ORGANISER:
+      'Organization type and finding the phycical location is better in genaral',
+    EVENT: 'Organized event is better',
+    COSTS: 'Having a clear refund policy and discounts are alwas better',
+    PAPERS: 'Publication is mager part of a confarnce',
+    PROGRAMME:
+      'Pland confarnce is better for the attendis and speaks for the serious ness of the organizers',
+    PUBLICATION:
+      'stating how they proseeding with papers publishd on the event is good',
+  }
+
+  const processData = () => {
+    const { userAnswers } = globalState
+    let output = []
+
+    for (const section in userAnswers) {
+      if (userAnswers.hasOwnProperty(section)) {
+        const sectionAnswers = userAnswers[section]
+        let sectionOutput: { section: string; messages: string[] } = {
+          section,
+          messages: [],
+        }
+        let foundCustomMessage = false // Flag to track if a custom message has been found
+
+        for (const question in sectionAnswers) {
+          if (sectionAnswers.hasOwnProperty(question)) {
+            const answerItem = sectionAnswers[question]
+            const answers = Array.isArray(answerItem)
+              ? answerItem
+              : [answerItem]
+
+            answers.forEach((answer) => {
+              const parts = answer.split('|')
+              if (parts.length > 2 && parts[2]) {
+                sectionOutput.messages.push(parts[2])
+                foundCustomMessage = true // Custom message found
+              }
+            })
+          }
+        }
+
+        if (!foundCustomMessage && cusMsg[section]) {
+          sectionOutput.messages.push(cusMsg[section])
+        }
+
+        output.push(sectionOutput)
+      }
+    }
+
+    return output
+  }
+
+  const processedData = processData()
 
   return (
-    <div className="px-4 py-2 w-full overflow-auto">
-      <pre>{JSON.stringify(globalState.userAnswers, undefined, 2)}</pre>
+    <div className="p-4 w-full">
+      {/* <pre>{JSON.stringify(globalState.userAnswers, undefined, 2)}</pre> */}
+      <h3 className="text-xl mb-4 mt-8">Folowing is your break down</h3>
+      {processedData.map((section, index) => (
+        <div key={index} className="mb-6">
+          <h4 className="text-md">{section.section}</h4>
+          <ul className="list-disc pl-5">
+            {section.messages.map((message, msgIndex) => (
+              <li key={msgIndex} className="text-gray-600 mb-1">
+                {message}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   )
 }
@@ -32,7 +101,7 @@ const RiskLevels = () => {
             backgroundColor: risk.color,
             textShadow: 'rgb(0 0 0 / 60%) 1px 1px 2px',
           }}
-          className="px-4 py-2 text-white text-xs lg:text-sm rounded-lg relative z-10"
+          className="px-4 py-2 text-white text-xs lg:text-sm rounded-full relative z-10"
         >
           {risk.name}
         </div>

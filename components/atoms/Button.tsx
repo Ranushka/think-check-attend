@@ -9,8 +9,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const getVariant = {
-  primary: 'border-primary bg-primary hover:bg-primary-600 text-primary-950',
-  secondary: 'border-primary hover:bg-primary text-primary hover:text-white',
+  primary:
+    'border-primary bg-primary hover:bg-primary-600 active:bg-primary-700 text-primary-950',
+  secondary:
+    'border-primary hover:bg-primary-200 active:bg-primary-300 text-primary hover:text-primary-700',
   default: 'border-gray-200 hover:bg-gray-200 text-gray-900',
 }
 
@@ -31,7 +33,6 @@ const Button: React.FC<ButtonProps> = ({
   const buttonClasses = classNames(
     'border cursor-pointer rounded-md shadow-sm font-semibold select-none',
     'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2',
-    'duration-150 active:scale-95',
     getSize[size],
     getVariant[variant],
     className,

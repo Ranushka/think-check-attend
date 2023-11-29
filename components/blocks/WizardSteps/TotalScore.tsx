@@ -6,20 +6,27 @@ import { classNames } from '../../../helpers/classNames'
 const calculateFinalCount = (userAnswers: any) => {
   let totalScore = 0
 
-  for (const key in userAnswers) {
-    if (userAnswers.hasOwnProperty(key)) {
-      const answerItem = userAnswers[key]
+  // Iterate through each step
+  for (const step in userAnswers) {
+    if (userAnswers.hasOwnProperty(step)) {
+      const stepAnswers = userAnswers[step]
 
-      // if it is an arry it is multichoise
-      if (Array.isArray(answerItem)) {
-        answerItem.forEach((choice: any) => {
-          const itmScore = choice.split('|')?.[1] || 0
-          totalScore += parseInt(itmScore)
-        })
-      } else if (answerItem) {
-        // Handle single answer
-        const itmScore = answerItem.split('|')?.[1] || 0
-        totalScore += parseInt(itmScore)
+      // Iterate through answers in each step
+      for (const question in stepAnswers) {
+        if (stepAnswers.hasOwnProperty(question)) {
+          const answerItem = stepAnswers[question]
+
+          // Check if it is a multi-choice (array) or single choice
+          if (Array.isArray(answerItem)) {
+            answerItem.forEach((choice: any) => {
+              const itmScore = choice.split('|')?.[1] || 0
+              totalScore += parseInt(itmScore)
+            })
+          } else if (answerItem) {
+            const itmScore = answerItem.split('|')?.[1] || 0
+            totalScore += parseInt(itmScore)
+          }
+        }
       }
     }
   }

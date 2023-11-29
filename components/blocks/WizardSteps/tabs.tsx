@@ -13,14 +13,21 @@ export default function StepIndicator({
   }
 
   return (
-    <nav aria-label="Progress">
-      <ol role="list" className="flex items-center justify-center">
+    <nav
+      aria-label="Progress"
+      className="mb-8 py-2 sticky -top-1 bg-white z-20"
+      id="validateTabs"
+    >
+      <ol
+        role="list"
+        className="flex items-center md:justify-center overflow-auto no-scrollbar"
+      >
         {steps?.map((step: any, stepIdx: number) => (
           <li
             key={step.name}
             // data-tina-field={tinaField(step)}
             className={classNames(
-              stepIdx !== steps.length - 1 ? 'pr-8 sm:pr-20' : '',
+              stepIdx !== steps.length - 1 ? 'pr-8' : '',
               'relative',
             )}
           >
@@ -30,56 +37,40 @@ export default function StepIndicator({
                   className="absolute inset-0 flex items-center"
                   aria-hidden="true"
                 >
-                  <div className="h-0.5 w-full bg-primary-600" />
+                  {/* <div className="h-0.5 w-full bg-primary-600" /> */}
                 </div>
                 <button
-                  onClick={() => handleStepClick(stepIdx)} // Handle step click
-                  className="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary-600 hover:bg-primary-900"
+                  onClick={() => handleStepClick(stepIdx)}
+                  className="relative flex items-center justify-center"
                 >
                   <CheckIcon
                     className="h-5 w-5 text-white"
                     aria-hidden="true"
                   />
-                  <span className="sr-only">{step.name}</span>
+                  <span className="text-sm bg-primary-200 ">{step.name}</span>
                 </button>
               </>
             ) : currentStep === stepIdx ? (
               <>
-                <div
-                  className="absolute inset-0 flex items-center"
-                  aria-hidden="true"
-                >
-                  <div className="h-0.5 w-full bg-gray-200" />
-                </div>
                 <button
                   onClick={() => handleStepClick(stepIdx)} // Handle step click
-                  className="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary-600 bg-white"
+                  className="relative flex items-center justify-center"
                   aria-current="step"
                 >
-                  <span
-                    className="h-2.5 w-2.5 rounded-full bg-primary-600"
-                    aria-hidden="true"
-                  />
-                  <span className="sr-only">{step.name}</span>
+                  <span className="text-xs bg-primary-600 px-4 py-2 rounded-md text-white font-bold">
+                    {step.title}
+                  </span>
                 </button>
               </>
             ) : (
               <>
-                <div
-                  className="absolute inset-0 flex items-center"
-                  aria-hidden="true"
-                >
-                  <div className="h-0.5 w-full bg-gray-200" />
-                </div>
                 <button
                   onClick={() => handleStepClick(stepIdx)} // Handle step click
-                  className="group relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:border-gray-400"
+                  className="group relative flex items-center justify-center bg-white hover:border-primary-400"
                 >
-                  <span
-                    className="h-2.5 w-2.5 rounded-full bg-transparent group-hover:bg-gray-300"
-                    aria-hidden="true"
-                  />
-                  <span className="sr-only">{step.name}</span>
+                  <span className="text-xs bg-primary-300 px-4 py-2 rounded-md text-gray-600 font-medium">
+                    {step.title}
+                  </span>
                 </button>
               </>
             )}
