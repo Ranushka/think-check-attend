@@ -1,14 +1,14 @@
 import React from 'react'
-import { classNames } from '../../../helpers/classNames'
-import { CheckIcon } from '@heroicons/react/20/solid'
-import { tinaField } from 'tinacms/dist/react'
 import Button from '../../../components/atoms/Button'
+import useGlobal from '../../../context/globalContext'
 
 export default function BottomTabNav({
   steps,
   currentStep,
   setCurrentStep,
 }: any) {
+  const { setGlobalState } = useGlobal()
+
   const handleNext = () => {
     if (currentStep < steps.length) {
       setCurrentStep(currentStep + 1)
@@ -21,18 +21,32 @@ export default function BottomTabNav({
     }
   }
 
+  const handleRestart = () => {
+    setCurrentStep(0)
+  }
+
+  const handleNewConfarnace = () => {
+    setGlobalState({
+      userAnswers: {},
+    })
+  }
+
   if (currentStep === steps.length) {
     return (
       <div className="flex justify-center sticky -bottom-1 bg-gray-100 rounded-md p-2">
-        <Button variant="primary" size="lg" onClick={() => setCurrentStep(0)}>
-          Restart the validation
+        <Button variant="secondary" size="lg" onClick={handleRestart}>
+          Restart validation
+        </Button>
+        <div className="w-8" />
+        <Button variant="primary" size="lg" onClick={handleNewConfarnace}>
+          Validate new confarnace
         </Button>
       </div>
     )
   }
 
   return (
-    <div className="flex justify-between sticky -bottom-1 bg-gray-200 rounded-md p-2 items-center">
+    <div className="flex justify-between bg-gray-200 rounded-md p-2 items-center">
       <Button
         variant="secondary"
         size="md"
@@ -41,13 +55,12 @@ export default function BottomTabNav({
       >
         Back
       </Button>
-
       {currentStep >= steps.length - 1 ? (
         <Button variant="primary" size="lg" onClick={handleNext}>
           Show Results
         </Button>
       ) : (
-        <Button variant="secondary" size="md" onClick={handleNext}>
+        <Button variant="primary" size="md" onClick={handleNext}>
           Next
         </Button>
       )}

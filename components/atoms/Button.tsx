@@ -18,8 +18,8 @@ const getVariant = {
 
 const getSize = {
   sm: 'px-3 py-2 text-xs',
-  md: 'px-4 py-3 text-sm',
-  lg: 'px-5 py-3 text-lg',
+  md: 'px-8 py-3 text-sm',
+  lg: 'px-8 py-3 text-lg',
 }
 
 const Button: React.FC<ButtonProps> = ({

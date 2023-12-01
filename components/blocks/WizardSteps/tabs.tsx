@@ -24,7 +24,7 @@ export default function StepIndicator({
       >
         {steps?.map((step: any, stepIdx: number) => (
           <li
-            key={step.name}
+            key={stepIdx}
             // data-tina-field={tinaField(step)}
             className={classNames(
               stepIdx !== steps.length - 1 ? 'pr-8' : '',

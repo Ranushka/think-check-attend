@@ -26,6 +26,10 @@ function WizardSteps({ data }: any) {
   const steps = data.items
 
   const renderStep = (stepIndex: number) => {
+    if (currentStep === steps.length) {
+      return <SummaryTab steps={steps} />
+    }
+
     const step = steps[stepIndex]
     return (
       <section data-tina-field={tinaField(step)}>
@@ -42,7 +46,7 @@ function WizardSteps({ data }: any) {
         setCurrentStep={setCurrentStep}
       />
 
-      {currentStep === steps.length ? <SummaryTab /> : renderStep(currentStep)}
+      {renderStep(currentStep)}
 
       <BottomTabNav
         steps={steps}

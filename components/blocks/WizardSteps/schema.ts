@@ -82,6 +82,13 @@ const WizardSteps = {
             },
           ],
         },
+        {
+          type: 'string',
+          name: 'scoreBreakDown',
+          label: 'Score break down',
+          description: 'Make sure not to add same score',
+          list: true,
+        },
       ],
     },
   ],
