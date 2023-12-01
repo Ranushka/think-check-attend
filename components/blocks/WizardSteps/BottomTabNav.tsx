@@ -23,16 +23,16 @@ export default function BottomTabNav({
 
   if (currentStep === steps.length) {
     return (
-      <div className="flex justify-center sticky -bottom-1 bg-primary-50 rounded-md p-2">
+      <div className="flex justify-center sticky -bottom-1 bg-gray-100 rounded-md p-2">
         <Button variant="primary" size="lg" onClick={() => setCurrentStep(0)}>
-          Restart the journy
+          Restart the validation
         </Button>
       </div>
     )
   }
 
   return (
-    <div className="flex justify-between sticky -bottom-1 bg-primary-50 rounded-md p-2 items-center">
+    <div className="flex justify-between sticky -bottom-1 bg-gray-200 rounded-md p-2 items-center">
       <Button
         variant="secondary"
         size="md"

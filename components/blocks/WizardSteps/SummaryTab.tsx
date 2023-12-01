@@ -1,22 +1,73 @@
 import React from 'react'
 import useGlobal from '../../../context/globalContext'
 import TotalScore from './TotalScore'
+import { getQualityStatus } from '../../../helpers/getQualityStatus'
+
+const cusMsg: any = {
+  DISCOVERY: {
+    20: 'Discovery section has a positive score.',
+    10: 'Discovery section has a neutral score.',
+    5: 'Discovery section has a negative score.',
+    0: 'Discovery section has a negative score.',
+  },
+  ORGANISER: {
+    4: 'Organiser section has a positive score.',
+    2: 'Organiser section has a neutral score.',
+    1: 'Organiser section has a negative score.',
+    0: 'Organiser section has a negative score.',
+  },
+  COSTS: {
+    4: 'Cost section has a positive score.',
+    2: 'Cost section has a neutral score.',
+    1: 'Cost section has a negative score.',
+    0: 'Cost section has a negative score.',
+  },
+  PAPERS: {
+    4: 'Papers section has a positive score.',
+    2: 'Papers section has a neutral score.',
+    1: 'Papers section has a negative score.',
+    0: 'Papers section has a negative score.',
+  },
+  EVENT: {
+    4: 'Event section has a positive score.',
+    2: 'Event section has a neutral score.',
+    1: 'Event section has a negative score.',
+    0: 'Event section has a negative score.',
+  },
+  PROGRAMME: {
+    4: 'Program section has a positive score.',
+    2: 'Program section has a neutral score.',
+    1: 'Program section has a negative score.',
+    0: 'Program section has a negative score.',
+  },
+  PUBLICATION: {
+    4: 'Publication section has a positive score.',
+    2: 'Publication section has a neutral score.',
+    1: 'Publication section has a negative score.',
+    0: 'Publication section has a negative score.',
+  },
+}
+
+const getScoreMessage = (section: string, totalScore: number) => {
+  const scoreThresholds = cusMsg[section]
+  if (!scoreThresholds) return null
+
+  // Find the appropriate message based on score
+  let selectedMessage = null
+  const sortedScores = Object.keys(scoreThresholds).sort(
+    (a, b) => parseInt(b) - parseInt(a),
+  )
+  for (const score of sortedScores) {
+    if (totalScore >= parseInt(score)) {
+      selectedMessage = scoreThresholds[score]
+      break // Exit loop once the appropriate score is found
+    }
+  }
+  return selectedMessage
+}
 
 const ScoreBreakdown = () => {
   const { state: globalState } = useGlobal()
-
-  const cusMsg: any = {
-    DISCOVERY: 'this is much positive oganic way is alwas better',
-    ORGANISER:
-      'Organization type and finding the phycical location is better in genaral',
-    EVENT: 'Organized event is better',
-    COSTS: 'Having a clear refund policy and discounts are alwas better',
-    PAPERS: 'Publication is mager part of a confarnce',
-    PROGRAMME:
-      'Pland confarnce is better for the attendis and speaks for the serious ness of the organizers',
-    PUBLICATION:
-      'stating how they proseeding with papers publishd on the event is good',
-  }
 
   const processData = () => {
     const { userAnswers } = globalState
@@ -25,11 +76,7 @@ const ScoreBreakdown = () => {
     for (const section in userAnswers) {
       if (userAnswers.hasOwnProperty(section)) {
         const sectionAnswers = userAnswers[section]
-        let sectionOutput: { section: string; messages: string[] } = {
-          section,
-          messages: [],
-        }
-        let foundCustomMessage = false // Flag to track if a custom message has been found
+        let sectionOutput = { section, messages: [], totalScore: 0 }
 
         for (const question in sectionAnswers) {
           if (sectionAnswers.hasOwnProperty(question)) {
@@ -40,16 +87,25 @@ const ScoreBreakdown = () => {
 
             answers.forEach((answer) => {
               const parts = answer.split('|')
+              const score = parts.length > 1 ? parseInt(parts[1], 10) || 0 : 0
+              sectionOutput.totalScore += score
+
               if (parts.length > 2 && parts[2]) {
-                sectionOutput.messages.push(parts[2])
-                foundCustomMessage = true // Custom message found
+                const msg = parts[2] as never
+                sectionOutput.messages.push(msg)
               }
             })
           }
         }
 
-        if (!foundCustomMessage && cusMsg[section]) {
-          sectionOutput.messages.push(cusMsg[section])
+        // Get score message
+        const scoreMessage = getScoreMessage(
+          section,
+          sectionOutput.totalScore,
+        ) as never
+
+        if (scoreMessage) {
+          sectionOutput.messages.push(scoreMessage)
         }
 
         output.push(sectionOutput)
@@ -82,30 +138,35 @@ const ScoreBreakdown = () => {
 }
 
 const RiskLevels = () => {
-  const riskLevels = [
-    { name: 'Critical Risk', color: '#B22222' },
-    { name: 'High Risk', color: '#FF8C00' },
-    { name: 'Moderate Risk', color: '#CCCC00' },
-    { name: 'Low Risk', color: '#80800e' },
-    { name: 'Minimal Risk', color: '#006400' },
-  ]
+  const riskLevels = [85, 65, 45, 25, 24]
 
-  const gradientColors = riskLevels.map((risk) => risk.color).join(', ')
+  const gradientColors = riskLevels
+    .map((risk) => {
+      const { color } = getQualityStatus(risk)
+      return color
+    })
+    .join(', ')
 
   return (
     <div className="flex justify-between items-center relative">
-      {riskLevels.map((risk, index) => (
-        <div
-          key={index}
-          style={{
-            backgroundColor: risk.color,
-            textShadow: 'rgb(0 0 0 / 60%) 1px 1px 2px',
-          }}
-          className="px-4 py-2 text-white text-xs lg:text-sm rounded-full relative z-10"
-        >
-          {risk.name}
-        </div>
-      ))}
+      {riskLevels.map((risk, index) => {
+        // getQualityStatus()
+
+        const { name, color } = getQualityStatus(risk)
+
+        return (
+          <div
+            key={index}
+            style={{
+              backgroundColor: color,
+              textShadow: 'rgb(0 0 0 / 60%) 1px 1px 2px',
+            }}
+            className="px-4 py-2 text-white text-xs lg:text-sm rounded-full relative z-10"
+          >
+            {name}
+          </div>
+        )
+      })}
       <div
         className="w-full h-1 absolute z-0 bg-gradient-to-r"
         style={{ background: `linear-gradient(to right, ${gradientColors})` }}

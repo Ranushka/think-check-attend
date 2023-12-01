@@ -1,6 +1,6 @@
 import React from 'react'
 import { classNames } from '../../../helpers/classNames'
-import { CheckIcon } from '@heroicons/react/20/solid'
+import { CheckIcon, PaperAirplaneIcon } from '@heroicons/react/20/solid'
 import { tinaField } from 'tinacms/dist/react'
 
 export default function StepIndicator({
@@ -15,12 +15,12 @@ export default function StepIndicator({
   return (
     <nav
       aria-label="Progress"
-      className="mb-8 py-2 sticky -top-1 bg-white z-20"
+      className="mb-8 pt-2 sticky top-0 bg-white z-20 border-b border-primary-600"
       id="validateTabs"
     >
       <ol
         role="list"
-        className="flex items-center md:justify-center overflow-auto no-scrollbar"
+        className="flex items-center md:justify-center overflow-auto no-scrollbar pb-4"
       >
         {steps?.map((step: any, stepIdx: number) => (
           <li
@@ -60,6 +60,10 @@ export default function StepIndicator({
                   <span className="text-xs bg-primary-600 px-4 py-2 rounded-md text-white font-bold">
                     {step.title}
                   </span>
+                  <PaperAirplaneIcon
+                    className="h-5 w-5 text-primary-600 absolute -bottom-3 rotate-90"
+                    aria-hidden="true"
+                  />
                 </button>
               </>
             ) : (
