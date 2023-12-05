@@ -8,7 +8,6 @@ const RendererMarkdown = (propsParent: any) => {
   return (
     <TinaMarkdown
       {...propsParent}
-      // content={content}
       components={{
         video: ({ url }: any) => {
           let embedUrl = ''

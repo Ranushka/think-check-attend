@@ -11,8 +11,8 @@ export { OurMissionSchema }
 export default function OurMission({ data }: any) {
   const { stats, content } = data
   return (
-    <div className="bg-white py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="bg-white py-8">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
           <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
             <div data-tina-field={tinaField(data, 'content')}>
@@ -20,7 +20,7 @@ export default function OurMission({ data }: any) {
             </div>
             <div className="lg:flex lg:flex-auto lg:justify-center">
               <dl
-                className="w-64 space-y-8 xl:w-80"
+                className="w-64 space-y-8 xl:w-80 xl:mt-10"
                 data-tina-field={tinaField(data)}
               >
                 {stats?.map((stat: any) => (

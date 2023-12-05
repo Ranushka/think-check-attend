@@ -6,6 +6,8 @@ import WizardSteps, { WizardStepsSchema } from './WizardSteps'
 import OurMission, { OurMissionSchema } from './OurMission'
 import OurApproch, { OurApprochSchema } from './OurApproch'
 import ThinkCheckSubmit, { ThinkCheckSubmitSchema } from './ThinkCheckSubmit'
+import RichText, { RichTextSchema } from './RichText'
+import Intro, { IntroSchema } from './Intro'
 
 const blockComponents = {
   Title,
@@ -16,6 +18,8 @@ const blockComponents = {
   OurMission,
   OurApproch,
   ThinkCheckSubmit,
+  RichText,
+  Intro,
 }
 
 const blockSchemas = [
@@ -27,6 +31,8 @@ const blockSchemas = [
   ThinkCheckSubmitSchema,
   OurApprochSchema,
   OurMissionSchema,
+  RichTextSchema,
+  IntroSchema,
 ]
 
 export { blockComponents, blockSchemas }

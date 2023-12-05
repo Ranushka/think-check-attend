@@ -11,7 +11,7 @@ const Title = ({ data }: any) => {
     >
       <div className="mx-auto max-w-2xl text-center">
         <h1
-          className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-5xl"
+          className="mt-2 text-4xl font-bold tracking-tight text-gray-600 sm:text-5xl"
           data-tina-field={tinaField(data, 'title')}
         >
           {data.title}

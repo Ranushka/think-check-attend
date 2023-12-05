@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -12,19 +13,20 @@ module.exports = {
     },
     colors: {
       white: '#fff',
+
       primary: {
-        DEFAULT: '#f97308',
-        50: '#fdf3e9',
-        100: '#fbe2c8',
-        200: '#f8c69e',
-        300: '#f5a374',
-        400: '#f38a4c',
-        500: '#f07324',
-        600: '#dd5e0d',
-        700: '#b4460d',
-        800: '#922d0c',
-        900: '#70140c',
-        950: '#3F0A05',
+        DEFAULT: '#d49741',
+        50: '#fff3ce',
+        100: '#fbdfa5',
+        200: '#f7cc7c',
+        300: '#f4b852',
+        400: '#f0a529',
+        500: '#ec9100',
+        600: '#ce7e00',
+        700: '#b06a00',
+        800: '#915700',
+        900: '#734300',
+        950: '#553000',
       },
       gray: {
         50: '#fafafa',

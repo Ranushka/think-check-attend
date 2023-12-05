@@ -1,7 +1,6 @@
 import React from 'react'
 import { classNames } from '../../../helpers/classNames'
 import { CheckIcon, PaperAirplaneIcon } from '@heroicons/react/20/solid'
-import { tinaField } from 'tinacms/dist/react'
 
 export default function StepIndicator({
   steps,
@@ -25,7 +24,6 @@ export default function StepIndicator({
         {steps?.map((step: any, stepIdx: number) => (
           <li
             key={stepIdx}
-            // data-tina-field={tinaField(step)}
             className={classNames(
               stepIdx !== steps.length - 1 ? 'pr-8' : '',
               'relative',
@@ -36,9 +34,7 @@ export default function StepIndicator({
                 <div
                   className="absolute inset-0 flex items-center"
                   aria-hidden="true"
-                >
-                  {/* <div className="h-0.5 w-full bg-primary-600" /> */}
-                </div>
+                ></div>
                 <button
                   onClick={() => handleStepClick(stepIdx)}
                   className="relative flex items-center justify-center"
@@ -53,7 +49,7 @@ export default function StepIndicator({
             ) : currentStep === stepIdx ? (
               <>
                 <button
-                  onClick={() => handleStepClick(stepIdx)} // Handle step click
+                  onClick={() => handleStepClick(stepIdx)}
                   className="relative flex items-center justify-center"
                   aria-current="step"
                 >
@@ -69,10 +65,10 @@ export default function StepIndicator({
             ) : (
               <>
                 <button
-                  onClick={() => handleStepClick(stepIdx)} // Handle step click
-                  className="group relative flex items-center justify-center bg-white hover:border-primary-400"
+                  onClick={() => handleStepClick(stepIdx)}
+                  className="group relative flex items-center justify-center"
                 >
-                  <span className="text-xs bg-primary-300 px-4 py-2 rounded-md text-gray-600 font-medium">
+                  <span className="text-xs border border-primary-200 px-4 py-2 rounded-md text-gray-600 hover:bg-primary-50 font-medium">
                     {step.title}
                   </span>
                 </button>

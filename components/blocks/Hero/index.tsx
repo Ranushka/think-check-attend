@@ -36,7 +36,7 @@ export default function Hero({ data }: any) {
               </Link>
             </div>
           </div>
-          <div className="text-4xl font-black mt-8">
+          {/* <div className="text-4xl font-black mt-8">
             <span className="text-usp-think mr-6">Think.</span>
             <span className="text-usp-check mr-6">Check.</span>
             <span className="text-usp-attend mr-6">Attend.</span>
@@ -46,7 +46,7 @@ export default function Hero({ data }: any) {
             data-tina-field={tinaField(data, 'intro')}
           >
             {intro}
-          </p>
+          </p> */}
         </div>
       </div>
 
