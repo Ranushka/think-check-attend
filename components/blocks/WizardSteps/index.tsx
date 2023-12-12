@@ -34,6 +34,13 @@ function WizardSteps({ data }: any) {
     return (
       <section data-tina-field={tinaField(step)}>
         <RendererMarkdown content={step.content} currentSteTitle={step.title} />
+        <div
+          className="text-base leading-7 mb-6 bg-green-50 px-8 py-4 border border-green-100 rounded-lg relative"
+          data-tina-field={tinaField(step, 'tips')}
+        >
+          <h3 className="text-3xl mb-4 text-green-800">Keep in mind...</h3>
+          <RendererMarkdown content={step.tips} currentSteTitle={step.title} />
+        </div>
       </section>
     )
   }

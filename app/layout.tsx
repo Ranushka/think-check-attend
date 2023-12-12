@@ -26,7 +26,9 @@ export default async function RootLayout({ children }: ReactChildren) {
 
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${nanumMyeongjo.variable} font-sans`}>
+      <body
+        className={`${inter.variable} ${nanumMyeongjo.variable} font-sans text-gray-700`}
+      >
         <GlobalProvider>
           <Header globalData={globalData} />
           {children}

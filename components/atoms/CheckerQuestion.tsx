@@ -49,11 +49,20 @@ const CheckerQuestion = (props: any) => {
     currentSteTitle: string,
   ) => {
     return answersList.map((answerOption: any, i: number) => {
+      const checked = stepAnswers[question]?.includes(answerOption)
+
       const answerOptionData = answerOption.split('|')
       const answerText = answerOptionData?.[0]
+      const answerTip = answerOptionData?.[2]?.trim()
 
       return (
         <div key={i} className="mx-2 my-1">
+          {/* {JSON.stringify(answerOptionData)} */}
+          {checked && answerTip && (
+            <div className="absolute bottom-0 right-0 w-80 p-4 bg-primary-50">
+              {answerTip}
+            </div>
+          )}
           {isCheckbox ? (
             <label className="cursor-pointer">
               <input
@@ -61,7 +70,7 @@ const CheckerQuestion = (props: any) => {
                 type="checkbox"
                 value={answerOption}
                 name={id}
-                checked={stepAnswers[question]?.includes(answerOption)}
+                checked={checked}
                 onChange={() => handleAnswerChange(answerOption)}
               />
               {answerText}
@@ -73,7 +82,7 @@ const CheckerQuestion = (props: any) => {
                 type="radio"
                 value={answerOption}
                 name={id}
-                checked={stepAnswers[question]?.includes(answerOption)}
+                checked={checked}
                 onChange={() => handleAnswerChange(answerOption)}
               />
               {answerText}
@@ -87,7 +96,7 @@ const CheckerQuestion = (props: any) => {
   const qId = getId(question)
 
   return (
-    <div className="p-4 bg-gray-50 rounded-xl mb-4">
+    <div className="p-4 bg-gray-50 rounded-xl mb-4 relative">
       <p className="text-lg mb-2">{question}</p>
       {renderOptions(qId, question, currentSteTitle)}
     </div>

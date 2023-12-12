@@ -83,6 +83,11 @@ const WizardSteps = {
           ],
         },
         {
+          type: 'rich-text',
+          name: 'tips',
+          label: 'Tips',
+        },
+        {
           type: 'string',
           name: 'scoreBreakDown',
           label: 'Score break down',

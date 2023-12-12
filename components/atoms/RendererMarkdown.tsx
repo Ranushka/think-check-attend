@@ -2,7 +2,7 @@
 
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import CheckerQuestion from './CheckerQuestion'
-import { ShieldExclamationIcon } from '@heroicons/react/20/solid'
+import { LifebuoyIcon } from '@heroicons/react/20/solid'
 
 const RendererMarkdown = (propsParent: any) => {
   return (
@@ -35,11 +35,15 @@ const RendererMarkdown = (propsParent: any) => {
         blockquote: (props: any) => {
           return (
             <div className="text-base leading-7 mb-6 bg-primary-50 pl-12 pr-8 py-4 border border-primary-100 rounded-lg relative">
-              <ShieldExclamationIcon
+              <LifebuoyIcon
                 className="h-6 w-6 absolute -ml-8 text-primary-300"
                 aria-hidden="true"
               />
+
               <blockquote className="text-primary-950 opacity-70">
+                <h4 className="text-primary-950 opacity-90 text-xl font-semibold">
+                  Tips ...
+                </h4>
                 {props.children}
               </blockquote>
             </div>

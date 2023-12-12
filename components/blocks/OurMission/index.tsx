@@ -30,7 +30,7 @@ export default function OurMission({ data }: any) {
                     data-tina-field={tinaField(stat)}
                   >
                     <dt className="text-sm text-gray-600">{stat.name}</dt>
-                    <dd className="text-5xl font-semibold tracking-tight text-gray-900">
+                    <dd className="text-5xl font-semibold tracking-tight">
                       {stat.number}
                     </dd>
                   </div>
