@@ -1,7 +1,5 @@
-// import { iconSchema } from "../../util/icon";
-
-export default {
-  name: 'Title',
+const title = {
+  name: 'BB_Title',
   label: 'Title',
   ui: {
     defaultItem: {
@@ -21,3 +19,5 @@ export default {
     },
   ],
 }
+
+export default title

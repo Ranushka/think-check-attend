@@ -8,6 +8,8 @@ import OurApproch, { OurApprochSchema } from './OurApproch'
 import ThinkCheckSubmit, { ThinkCheckSubmitSchema } from './ThinkCheckSubmit'
 import RichText, { RichTextSchema } from './RichText'
 import Intro, { IntroSchema } from './Intro'
+import KeepInMind, { KeepInMindSchema } from './KeepInMind'
+import CheckerQuestion, { CheckerQuestionSchema } from './CheckerQuestion'
 
 const blockComponents = {
   Title,
@@ -20,9 +22,11 @@ const blockComponents = {
   ThinkCheckSubmit,
   RichText,
   Intro,
+  KeepInMind,
+  CheckerQuestion,
 }
 
-const blockSchemas = [
+const blockSchemas: any = [
   titleSchema,
   heroSchema,
   qnaSchema,
@@ -33,6 +37,8 @@ const blockSchemas = [
   OurMissionSchema,
   RichTextSchema,
   IntroSchema,
+  KeepInMindSchema,
+  CheckerQuestionSchema,
 ]
 
 export { blockComponents, blockSchemas }

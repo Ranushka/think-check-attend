@@ -1,10 +1,13 @@
 'use client'
 
 import { tinaField, useTina } from 'tinacms/dist/react'
-import { blockComponents } from '../blocks'
+import Block from './Block'
 
 const BlockRenderer = ({ rawData }: any) => {
+  // console.log('-----data--->>>>', rawData)
+
   const { data }: any = useTina(rawData)
+
   const blocksList = data.page.blocks
 
   if (!blocksList) {
@@ -19,18 +22,6 @@ const BlockRenderer = ({ rawData }: any) => {
       </div>
     )
   })
-}
-
-const blockMapping = Object.fromEntries(
-  Object.entries(blockComponents).map(([key, value]) => [key, value]),
-)
-
-const Block: React.FC<{ block: any }> = ({ block }) => {
-  const blockName = block?.__typename?.replace('PageBlocks', '')
-
-  const BlockComponent = blockMapping[blockName]
-
-  return BlockComponent ? <BlockComponent data={block} /> : null
 }
 
 export default BlockRenderer

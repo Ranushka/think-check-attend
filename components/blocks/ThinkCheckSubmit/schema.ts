@@ -1,5 +1,5 @@
 const hero = {
-  name: 'ThinkCheckSubmit',
+  name: 'BB_ThinkCheckSubmit',
   label: 'Think Check Submit',
   fields: [
     {

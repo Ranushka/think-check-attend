@@ -1,7 +1,5 @@
-// import { iconSchema } from "../../util/icon";
-
-export default {
-  name: 'richText',
+const RichText = {
+  name: 'BB_RichText',
   label: 'Rich Text',
   ui: {
     defaultItem: { width: 'max-w-2xl mx-auto' },
@@ -29,3 +27,5 @@ export default {
     },
   ],
 }
+
+export default RichText

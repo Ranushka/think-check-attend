@@ -1,5 +1,5 @@
 const schema = {
-  name: 'Intro',
+  name: 'BB_Intro',
   label: 'Intro',
   fields: [
     {

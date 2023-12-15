@@ -15,6 +15,8 @@ interface GlobalState {
   prevPath: any
   userAnswers: any
   workingTab: any
+  currentSteTitle: any
+  currentStep: any
 }
 
 interface GlobalContextValue {
@@ -35,6 +37,8 @@ function getDefaultState(): GlobalState {
     prevPath: null,
     userAnswers: {},
     workingTab: 0,
+    currentSteTitle: 'DISCOVERY',
+    currentStep: 0,
     // workingTab: { parent: 0, child: 0 },
   }
 }

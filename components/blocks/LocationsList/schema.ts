@@ -1,5 +1,5 @@
-export default {
-  name: 'LocationsList',
+const BB_LocationsList = {
+  name: 'BB_LocationsList',
   label: 'LocationsList',
   fields: [
     {
@@ -15,3 +15,5 @@ export default {
     },
   ],
 }
+
+export default BB_LocationsList

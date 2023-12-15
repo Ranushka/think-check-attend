@@ -4,8 +4,8 @@ const defaultItem = {
     'It is important to introduce new pets slowly and in a controlled environment. Gradually allow them to interact under supervision, and provide separate spaces if needed.',
 }
 
-export default {
-  name: 'QnA',
+const BB_QnA = {
+  name: 'BB_QnA',
   label: 'QnA',
   ui: {
     defaultItem: {
@@ -83,3 +83,5 @@ export default {
     },
   ],
 }
+
+export default BB_QnA

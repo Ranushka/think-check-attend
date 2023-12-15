@@ -1,16 +1,11 @@
 import React from 'react'
 import { classNames } from '../../../helpers/classNames'
-import { CheckIcon, PaperAirplaneIcon } from '@heroicons/react/20/solid'
+import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
 
 export default function StepIndicator({
   steps,
-  currentStep,
-  setCurrentStep,
+  currentStep, // setCurrentStep,
 }: any) {
-  const handleStepClick = (stepIdx: number) => {
-    setCurrentStep(stepIdx)
-  }
-
   return (
     <nav
       aria-label="Progress"
@@ -19,63 +14,50 @@ export default function StepIndicator({
     >
       <ol
         role="list"
-        className="flex items-center md:justify-center overflow-auto no-scrollbar pb-4"
+        className="flex items-center md:justify-between overflow-auto no-scrollbar pb-4 -mb-8"
       >
+        {/* <li className="absolute -top-8 left-0">Start validation</li> */}
         {steps?.map((step: any, stepIdx: number) => (
           <li
-            key={stepIdx}
+            key={stepIdx + 1}
             className={classNames(
-              stepIdx !== steps.length - 1 ? 'pr-8' : '',
-              'relative',
+              'relative pt-8',
+              stepIdx !== steps.length - 1 ? 'mr-8' : '',
             )}
           >
-            {step.status === 'complete' ? (
-              <>
-                <div
-                  className="absolute inset-0 flex items-center"
+            {currentStep === stepIdx ? (
+              <button
+                // onClick={() => setCurrentStep(stepIdx)} // Uncomment if needed
+                className="relative flex items-center justify-center pointer-events-none"
+                aria-current="step"
+              >
+                <div className="text-xs px-4 py-2 rounded-md text-white font-bold bg-primary-600">
+                  <span className="text-sm absolute -top-4 bg-primary-600 rounded-full px-2 py-1 left-1/2 transform -translate-x-1/2">
+                    {stepIdx + 1}
+                  </span>
+                  <div className="text-sm">{step.title}</div>
+                </div>
+                <PaperAirplaneIcon
+                  className="h-5 w-5 text-primary-600 absolute -bottom-2 rotate-90"
                   aria-hidden="true"
-                ></div>
-                <button
-                  onClick={() => handleStepClick(stepIdx)}
-                  className="relative flex items-center justify-center"
-                >
-                  <CheckIcon
-                    className="h-5 w-5 text-white"
-                    aria-hidden="true"
-                  />
-                  <span className="text-sm bg-primary-200 ">{step.name}</span>
-                </button>
-              </>
-            ) : currentStep === stepIdx ? (
-              <>
-                <button
-                  onClick={() => handleStepClick(stepIdx)}
-                  className="relative flex items-center justify-center"
-                  aria-current="step"
-                >
-                  <span className="text-xs bg-primary-600 px-4 py-2 rounded-md text-white font-bold">
-                    {step.title}
-                  </span>
-                  <PaperAirplaneIcon
-                    className="h-5 w-5 text-primary-600 absolute -bottom-3 rotate-90"
-                    aria-hidden="true"
-                  />
-                </button>
-              </>
+                />
+              </button>
             ) : (
-              <>
-                <button
-                  onClick={() => handleStepClick(stepIdx)}
-                  className="group relative flex items-center justify-center"
-                >
-                  <span className="text-xs border border-primary-200 px-4 py-2 rounded-md text-gray-600 hover:bg-primary-50 font-medium">
-                    {step.title}
+              <button
+                // onClick={() => setCurrentStep(stepIdx)} // Uncomment if needed
+                className="group relative flex items-center justify-center bg-primary-50 rounded-md pointer-events-none"
+              >
+                <div className="text-xs px-4 py-2 text-gray-600">
+                  <span className="text-sm absolute bg-primary-50 -top-4 rounded-full px-2 py-1 left-1/2 transform -translate-x-1/2">
+                    {stepIdx + 1}
                   </span>
-                </button>
-              </>
+                  <div className="text-sm">{step.title}</div>
+                </div>
+              </button>
             )}
           </li>
         ))}
+        {/* <li className="absolute -top-8 right-0">Validation summary</li> */}
       </ol>
     </nav>
   )

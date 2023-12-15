@@ -29,6 +29,7 @@ export default function BottomTabNav({
     setGlobalState({
       userAnswers: {},
     })
+    setCurrentStep(0)
   }
 
   if (currentStep === steps.length) {
@@ -46,7 +47,13 @@ export default function BottomTabNav({
   }
 
   return (
-    <div className="flex justify-between bg-gray-200 rounded-md p-2 items-center">
+    <div
+      className="flex justify-between bg-gray-200 rounded-md p-2 items-center sticky bottom-0"
+      style={{
+        backdropFilter: 'blur(6px)',
+        background: '#7a7a7a24',
+      }}
+    >
       <Button
         variant="secondary"
         size="md"

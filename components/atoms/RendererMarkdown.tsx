@@ -1,7 +1,6 @@
 'use client'
 
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import CheckerQuestion from './CheckerQuestion'
 import { LifebuoyIcon } from '@heroicons/react/20/solid'
 
 const RendererMarkdown = (propsParent: any) => {
@@ -55,11 +54,6 @@ const RendererMarkdown = (propsParent: any) => {
               {props.children}
             </p>
           )
-        },
-
-        // CheckerQuestion: CheckerQuestion,
-        CheckerQuestion: (props: any) => {
-          return CheckerQuestion({ ...props, ...propsParent })
         },
         ul: (props: any) => {
           return (

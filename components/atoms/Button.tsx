@@ -10,9 +10,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const getVariant = {
   primary:
-    'border-primary bg-primary hover:bg-primary-600 active:bg-primary-700 text-primary-950',
+    'border-primary bg-primary hover:bg-primary-400 active:bg-primary-500 text-primary-950',
   secondary:
-    'border-primary hover:bg-primary-200 active:bg-primary-300 text-primary hover:text-primary-700',
+    'border-primary bg-white hover:bg-primary-200 active:bg-primary-300 text-primary hover:text-primary-700',
   default: 'border-gray-200 hover:bg-gray-200 text-gray-900',
 }
 

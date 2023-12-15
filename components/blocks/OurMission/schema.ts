@@ -1,5 +1,5 @@
 const hero = {
-  name: 'OurMission',
+  name: 'BB_OurMission',
   label: 'Our Mission',
   ui: {
     defaultItem: {
