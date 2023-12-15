@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-import RendererMarkdown from '../../../components/atoms/RendererMarkdown'
 import WizardStepsSchema from './schema'
 import Tabs from './tabs'
 import SummaryTab from './SummaryTab'
@@ -7,10 +6,12 @@ import { tinaField } from 'tinacms/dist/react'
 import BottomTabNav from './BottomTabNav'
 import Block from '../../../components/atoms/Block'
 import useGlobal from '../../../context/globalContext'
+import useVersionCheck from '../../../helpers/useVersionCheck'
 
 function WizardSteps({ data }: any) {
   const firstRender = useRef(true)
   const { setGlobalState, state: globalState } = useGlobal()
+  useVersionCheck()
 
   useEffect(() => {
     if (firstRender.current) {
