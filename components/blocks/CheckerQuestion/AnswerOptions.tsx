@@ -9,7 +9,8 @@ const AnswerOptions = ({
 }: any) => {
   return answersList.map((answerOption: any, i: number) => {
     const [answerText, answerPoints, answerTip] = answerOption.split('|')
-    const checked = stepAnswers[question]?.includes(answerText) || false
+    const answerWithPoints = `${answerText}|${answerPoints}`
+    const checked = stepAnswers[question]?.includes(answerWithPoints) || false
 
     return (
       <div key={answerText} className="mx-2 my-1">

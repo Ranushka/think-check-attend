@@ -17,15 +17,19 @@ const CheckerQuestion = (props: any) => {
     answerPoints: any,
     answerTip: any,
   ) => {
+    // console.log('answerPoints---', answerText, answerPoints)
+
+    const answerWithPoints = `${answerText}|${answerPoints}`
+
     let questionAnswers = isCheckbox
       ? currentTabUserAnswersState[question] || []
-      : [answerText]
+      : [answerWithPoints]
 
-    if (isCheckbox) {
-      questionAnswers = questionAnswers.includes(answerText)
-        ? questionAnswers.filter((item: any) => item !== answerText)
-        : [...questionAnswers, answerText]
-    }
+    // if (isCheckbox) {
+    //   questionAnswers = questionAnswers.includes(answerText)
+    //     ? questionAnswers.filter((item: any) => item !== answerText)
+    //     : [...questionAnswers, answerText]
+    // }
 
     setGlobalState({
       userAnswers: {

@@ -46,6 +46,11 @@ const WizardSteps = {
           description: 'Make sure not to add same score',
           list: true,
         },
+        {
+          type: 'boolean',
+          name: 'skip',
+          label: 'Section is skippable',
+        },
       ],
     },
   ],

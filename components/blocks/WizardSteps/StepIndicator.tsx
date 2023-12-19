@@ -1,6 +1,7 @@
 import React from 'react'
 import { classNames } from '../../../helpers/classNames'
 import { PaperAirplaneIcon } from '@heroicons/react/20/solid'
+import { tinaField } from 'tinacms/dist/react'
 
 export default function StepIndicator({
   steps,
@@ -11,6 +12,7 @@ export default function StepIndicator({
       aria-label="Progress"
       className="mb-8 pt-2 sticky top-0 bg-white z-20 border-b border-primary-600"
       id="validateTabs"
+      data-tina-field={tinaField(steps)}
     >
       <ol
         role="list"

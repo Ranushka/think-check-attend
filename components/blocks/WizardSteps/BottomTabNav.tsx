@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '../../../components/atoms/Button'
 import useGlobal from '../../../context/globalContext'
 
@@ -7,12 +7,43 @@ export default function BottomTabNav({
   currentStep,
   setCurrentStep,
 }: any) {
-  const { setGlobalState } = useGlobal()
+  const { state: globalState, setGlobalState } = useGlobal()
+
+  const isCurrentStepComplete = () => {
+    const currentStepAnswers =
+      globalState.userAnswers[steps[currentStep]?.title]
+    const currentStepQuestion = steps[currentStep].blocks.filter(
+      (item: any) => item.question,
+    )
+    const allQuestionsAnswered = currentStepQuestion.every((item: any) => {
+      return currentStepAnswers?.[item.question] !== undefined
+    })
+
+    return allQuestionsAnswered
+  }
+
+  const isEditorMode = () => {
+    return !window.location.href.includes('admin')
+  }
 
   const handleNext = () => {
+    console.log('isCurrentStepComplete -->', isCurrentStepComplete())
+
+    if (!isCurrentStepComplete()) {
+      alert('Please anser the all questions')
+
+      if (isEditorMode()) {
+        return
+      }
+    }
+
     if (currentStep < steps.length) {
       setCurrentStep(currentStep + 1)
     }
+  }
+
+  const handleSkip = () => {
+    setCurrentStep(currentStep + 1)
   }
 
   const handleBack = () => {
@@ -50,7 +81,7 @@ export default function BottomTabNav({
     <div
       className="flex justify-between bg-gray-200 rounded-md p-2 items-center sticky bottom-0"
       style={{
-        backdropFilter: 'blur(6px)',
+        backdropFilter: 'blur(8px)',
         background: '#7a7a7a24',
       }}
     >
@@ -62,6 +93,18 @@ export default function BottomTabNav({
       >
         Back
       </Button>
+
+      {steps[currentStep]?.skip && (
+        <Button
+          variant="secondary"
+          size="md"
+          onClick={handleSkip}
+          className="ml-auto mr-4"
+        >
+          Skip section
+        </Button>
+      )}
+
       {currentStep >= steps.length - 1 ? (
         <Button variant="primary" size="lg" onClick={handleNext}>
           Show Results

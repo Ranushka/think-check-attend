@@ -40,62 +40,60 @@ const getScoreMessage = (
   return selectedMessage
 }
 
-const ScoreBreakdown = ({ steps }: any) => {
-  const { state: globalState } = useGlobal()
+const processData = (steps: any, globalState: any) => {
   const overallMessages = getOverallMessages(steps)
+  const { userAnswers } = globalState
+  let output = []
 
-  const processData = () => {
-    const { userAnswers } = globalState
-    let output = []
+  for (const section in userAnswers) {
+    if (userAnswers.hasOwnProperty(section)) {
+      const sectionAnswers = userAnswers[section]
+      let sectionOutput = { section, messages: [], totalScore: 0 }
 
-    for (const section in userAnswers) {
-      if (userAnswers.hasOwnProperty(section)) {
-        const sectionAnswers = userAnswers[section]
-        let sectionOutput = { section, messages: [], totalScore: 0 }
+      for (const question in sectionAnswers) {
+        if (sectionAnswers.hasOwnProperty(question)) {
+          const answerItem = sectionAnswers[question]
+          const answers = Array.isArray(answerItem) ? answerItem : [answerItem]
 
-        for (const question in sectionAnswers) {
-          if (sectionAnswers.hasOwnProperty(question)) {
-            const answerItem = sectionAnswers[question]
-            const answers = Array.isArray(answerItem)
-              ? answerItem
-              : [answerItem]
+          answers.forEach((answer) => {
+            const parts = answer.split('|')
+            const score = parts.length > 1 ? parseInt(parts[1], 10) || 0 : 0
+            sectionOutput.totalScore += score
 
-            answers.forEach((answer) => {
-              const parts = answer.split('|')
-              const score = parts.length > 1 ? parseInt(parts[1], 10) || 0 : 0
-              sectionOutput.totalScore += score
-
-              if (parts.length > 2 && parts[2]) {
-                const msg = parts[2] as never
-                sectionOutput.messages.push(msg)
-              }
-            })
-          }
+            if (parts.length > 2 && parts[2]) {
+              const msg = parts[2] as never
+              sectionOutput.messages.push(msg)
+            }
+          })
         }
-
-        // Get score message
-        const scoreMessage = getScoreMessage(
-          overallMessages,
-          section,
-          sectionOutput.totalScore,
-        ) as never
-
-        if (scoreMessage) {
-          sectionOutput.messages.push(scoreMessage)
-        }
-
-        output.push(sectionOutput)
       }
-    }
 
-    return output
+      // Get score message
+      const scoreMessage = getScoreMessage(
+        overallMessages,
+        section,
+        sectionOutput.totalScore,
+      ) as never
+
+      if (scoreMessage) {
+        sectionOutput.messages.push(scoreMessage)
+      }
+
+      output.push(sectionOutput)
+    }
   }
 
-  const processedData = processData()
+  return output
+}
+
+const ScoreBreakdown = ({ steps }: any) => {
+  const { state: globalState } = useGlobal()
+  const processedData = processData(steps, globalState)
 
   return (
     <div className="p-4 w-full">
       <h3 className="text-xl mb-4 mt-8">Folowing is your break down</h3>
+
       {processedData.map((section, index) => (
         <div key={index} className="mb-6">
           <h4 className="text-md">{section.section}</h4>

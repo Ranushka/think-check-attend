@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import WizardStepsSchema from './schema'
-import Tabs from './tabs'
+import StepIndicator from './StepIndicator'
 import SummaryTab from './SummaryTab'
 import { tinaField } from 'tinacms/dist/react'
 import BottomTabNav from './BottomTabNav'
@@ -49,8 +49,12 @@ function WizardSteps({ data }: any) {
   }
 
   return (
-    <div className="max-w-5xl m-auto px-10" id="validatorWizard">
-      <Tabs
+    <div
+      className="max-w-5xl m-auto px-10"
+      id="validatorWizard"
+      // data-tina-field={tinaField(data)}
+    >
+      <StepIndicator
         steps={steps}
         currentStep={globalState.currentStep}
         setCurrentStep={handleSetCurrentStep}
