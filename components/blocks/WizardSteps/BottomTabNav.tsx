@@ -57,10 +57,9 @@ export default function BottomTabNav({
   }
 
   const handleNewConfarnace = () => {
-    setGlobalState({
-      userAnswers: {},
-    })
     setCurrentStep(0)
+    localStorage.clear()
+    window.location.reload()
   }
 
   if (currentStep === steps.length) {
