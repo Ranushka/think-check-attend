@@ -23,18 +23,19 @@ export default function BottomTabNav({
   }
 
   const isEditorMode = () => {
-    return !window.location.href.includes('admin')
+    const isEditing = localStorage.getItem('tina.isEditing')
+
+    console.log('ssss', isEditing, !!isEditing)
+
+    return !!isEditing
   }
 
   const handleNext = () => {
     console.log('isCurrentStepComplete -->', isCurrentStepComplete())
 
-    if (!isCurrentStepComplete()) {
+    if (!isCurrentStepComplete() && !isEditorMode()) {
       alert('Please anser the all questions')
-
-      if (isEditorMode()) {
-        return
-      }
+      return
     }
 
     if (currentStep < steps.length) {

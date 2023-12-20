@@ -867,87 +867,112 @@ blocks:
             content: "### PUBLICATION\n\nThe publishing of conference proceedings is a well-established way of preserving valuable insights and making them accessible for researchers who could not attend a particular event. In addition, many universities will only provide funding support for faculty to attend conferences if they can guarantee to publish the conference paper. However, unfortunately predatory conference organisers often see publication as a way of extracting more money from researchers. Therefore, the way that the publication of the conference proceedings is mentioned can offer insights into the credibility of the conference organiser.\_\n"
             _template: BB_RichText
           - question: >-
-              If publishing is discussed is it for every paper or only for
-              selected papers
+              Is publishing guaranteed for every paper or only for selected
+              papers post peer review
             answersList:
-              - 'yes'
-              - 'no'
+              - >-
+                every paper|-4|This is a cause for concern as it suggests the
+                organiser and/or publisher do not care about academic rigour. 
+              - >-
+                selected papers|4|While a good sign, it is important to still
+                evaluate the event fully before making a final decision.
             _template: BB_CheckerQuestion
           - question: >-
               Do they have clear, comprehensive and ethical review and
               acceptance criteria
             answersList:
-              - 'yes'
-              - 'no'
-            _template: BB_CheckerQuestion
-          - question: Do they conform to international academic best practices
-            answersList:
-              - 'yes'
-              - 'no'
-            _template: BB_CheckerQuestion
-          - question: Or is publication guaranteed automatically
-            answersList:
-              - 'yes'
-              - 'no'
+              - >-
+                yes|2|While a good sign, it is important to still evaluate the
+                event fully before making a final decision.
+              - >-
+                no|-2|This is a cause for concern as it suggests the organiser
+                and/or publisher do not care about academic rigour. 
             _template: BB_CheckerQuestion
           - question: >-
-              Is a specific publication mentioned (a journal special issue or
-              book series)
+              Do they conform to international academic best practises (such as
+              those outlined by think.check.submit and COPE)
             answersList:
-              - 'yes'
-              - 'no'
-            _template: BB_CheckerQuestion
-          - question: Can these claims be verified (by publisher or journal)
-            answersList:
-              - 'yes'
-              - 'no'
+              - >-
+                yes|2|While a good sign, it is important to still evaluate the
+                event fully before making a final decision.
+              - no|-2|This is a cause for concern.
             _template: BB_CheckerQuestion
           - question: >-
-              Is there a fee to publish (is it reasonable, and are the
+              If a specific publication mentioned (a journal special issue or
+              book series) can these claims be independently verified (by
+              publisher or journal)?
+            answersList:
+              - >-
+                yes|1|While a good sign, it is important to still evaluate the
+                event fully before making a final decision.
+              - no|2|This is a cause for concern.
+            _template: BB_CheckerQuestion
+          - question: >-
+              is there a fee to publish (is it reasonable, and are the
               publishers transparent about the costs)
             answersList:
-              - 'yes'
-              - 'no'
+              - >-
+                yes|2|As long as the fee is reasonable and the costs are
+                explained, this is not a cause for concern. 
+              - >-
+                no|-3|If there is a fee but it is very high, or you are not
+                getting a proper service (copyediting, typesetting, PDF and HTML
+                versions, a dedicated DOI for your individual article,
+                post-publication promotion support etc), then this is a cause
+                for concern.
             _template: BB_CheckerQuestion
           - question: >-
-              Does publication (and generating more revenue) seem like the
+              does publication (and generating more revenue) seem like the
               primary purpose of the event
             answersList:
-              - 'yes'
-              - 'no'
+              - yes|-4|This is a cause for concern.
+              - >-
+                no|2|While a good sign, it is important to still evaluate the
+                event fully before making a final decision.
             _template: BB_CheckerQuestion
           - question: >-
-              If a specific publisher is mentioned, do they have a good
+              if a specific publisher is mentioned, do they have a good
               reputation
             answersList:
-              - 'yes'
-              - 'no'
+              - >-
+                yes|2|While a good sign, it is important to still evaluate the
+                event fully before making a final decision.
+              - no|-2|This is a cause for concern.
             _template: BB_CheckerQuestion
-          - question: Are the publisher and organiser linked or separate entities
+          - question: are the publisher and organiser linked or separate entities
             answersList:
-              - 'yes'
-              - 'no'
+              - Linked|-1|This is a cause for concern.
+              - >-
+                separate|1|While a good sign, it is important to still evaluate
+                the event fully before making a final decision.
             _template: BB_CheckerQuestion
           - question: >-
-              If a specific publication is mentioned, does it have a good
-              reputation
+              if a specific publication is mentioned, does it have a good
+              reputation (do leading researchers in your field publish there,
+              have you cited work published here etc)
             answersList:
-              - 'yes'
-              - 'no'
+              - >-
+                yes|3|While a good sign, it is important to still evaluate the
+                event fully before making a final decision.
+              - no|-2|This is a cause for concern.
             _template: BB_CheckerQuestion
           - question: >-
-              Is the publication relevant to the conference theme and your own
+              is the publication relevant to the conference theme and your own
               subject area
             answersList:
-              - 'yes'
-              - 'no'
+              - >-
+                yes|3|While a good sign, it is important to still evaluate the
+                event fully before making a final decision.
+              - no|-2|This is a cause for concern.
             _template: BB_CheckerQuestion
           - question: >-
-              Do you recognise the editorial board for the specific publication,
+              do you recognise the editorial board for the specific publication,
               are they active in your field
             answersList:
-              - 'yes'
-              - 'no'
+              - >-
+                yes|4|While a good sign, it is important to still evaluate the
+                event fully before making a final decision.
+              - no|-2|This is a cause for concern.
             _template: BB_CheckerQuestion
           - content: >
               When considering the quality of a prospective publication or
@@ -988,6 +1013,12 @@ blocks:
         skip: true
     _template: BB_WizardSteps
 ---
+
+
+
+
+
+
 
 
 

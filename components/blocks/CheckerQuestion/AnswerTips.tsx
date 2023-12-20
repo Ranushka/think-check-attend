@@ -14,8 +14,11 @@ const AnswerTips: React.FC<AnswerTipsProps> = ({
 }) => {
   const tipItems = answersList
     .filter((answerOption) => {
-      const [answerText, , tip] = answerOption.split('|')
-      const checked = currentTabUserAnswersState[question]?.includes(answerText)
+      const [answerText, answerPoints, tip] = answerOption.split('|')
+      const answerWithPoints = `${answerText}|${answerPoints}`
+
+      const checked =
+        currentTabUserAnswersState[question]?.includes(answerWithPoints)
       return checked && tip
     })
     .map((answerOption) => {
