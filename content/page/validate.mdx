@@ -590,10 +590,13 @@ blocks:
       - title: SUBMISSION
         blocks:
           - width: w-full
-            content: >
+            content: |
               ### SUBMISSION AND SELECTION
-
-
+            _template: BB_RichText
+          - content: "If the Call for Papers deadline has passed, or you are not interested in presenting at the conference, skip to the next\_\n"
+            _template: BB_WizardSkipSection
+          - width: w-full
+            content: >
               There are a number of factors to consider when deciding whether or
               not to present your research at a particular conference. After
               all, typically a paper should contain new and original research
@@ -735,10 +738,15 @@ blocks:
       - title: PROGRAMME
         blocks:
           - width: w-full
-            content: >
+            content: |
               ### PROGRAMME
-
-
+            _template: BB_RichText
+          - content: >
+              If the Call for Papers is still open, and the full programme is
+              not yet available, skip to the next section
+            _template: BB_WizardSkipSection
+          - width: w-full
+            content: >
               Once the papers have been selected and the programme organised,
               you can use it to evaluate the quality and relevance of the
               conference, and decide whether to attend. Conferences cost money,
@@ -864,7 +872,16 @@ blocks:
       - title: PUBLICATION
         blocks:
           - width: w-full
-            content: "### PUBLICATION\n\nThe publishing of conference proceedings is a well-established way of preserving valuable insights and making them accessible for researchers who could not attend a particular event. In addition, many universities will only provide funding support for faculty to attend conferences if they can guarantee to publish the conference paper. However, unfortunately predatory conference organisers often see publication as a way of extracting more money from researchers. Therefore, the way that the publication of the conference proceedings is mentioned can offer insights into the credibility of the conference organiser.\_\n"
+            content: |
+              ### PUBLICATION
+            _template: BB_RichText
+          - content: >
+              If you are not presenting at the event, so publishing is not an
+              option - or if the publication of the conference proceedings is
+              not mentions , skip to the next section
+            _template: BB_WizardSkipSection
+          - width: w-full
+            content: "The publishing of conference proceedings is a well-established way of preserving valuable insights and making them accessible for researchers who could not attend a particular event. In addition, many universities will only provide funding support for faculty to attend conferences if they can guarantee to publish the conference paper. However, unfortunately predatory conference organisers often see publication as a way of extracting more money from researchers. Therefore, the way that the publication of the conference proceedings is mentioned can offer insights into the credibility of the conference organiser.\_\n"
             _template: BB_RichText
           - question: >-
               Is publishing guaranteed for every paper or only for selected
@@ -1013,4 +1030,12 @@ blocks:
         skip: true
     _template: BB_WizardSteps
 ---
+
+
+
+
+
+
+
+
 

@@ -47,8 +47,10 @@ const CheckerQuestion = (props: any) => {
   }
 
   return (
-    <div className="p-4 bg-gray-50 rounded-xl mb-4 relative">
-      <p className="text-lg mb-2">{question}</p>
+    <div className="p-4 bg-gray-50 rounded-xl mb-4 relative animate">
+      <p className="text-lg mb-2" data-q={question}>
+        {question}
+      </p>
 
       <AnswerOptions
         answersList={answersList}

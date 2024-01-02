@@ -9,32 +9,101 @@ export default function BottomTabNav({
 }: any) {
   const { state: globalState, setGlobalState } = useGlobal()
 
+  // const isCurrentStepComplete = () => {
+  //   const currentStepAnswers =
+  //     globalState.userAnswers[steps[currentStep]?.title]
+  //   const currentStepQuestion = steps[currentStep].blocks.filter(
+  //     (item: any) => item.question,
+  //   )
+  //   const allQuestionsAnswered = currentStepQuestion.every((item: any) => {
+  //     return currentStepAnswers?.[item.question] !== undefined
+  //   })
+
+  //   return allQuestionsAnswered
+  // }
+
   const isCurrentStepComplete = () => {
     const currentStepAnswers =
       globalState.userAnswers[steps[currentStep]?.title]
-    const currentStepQuestion = steps[currentStep].blocks.filter(
+    const currentStepQuestions = steps[currentStep].blocks.filter(
       (item: any) => item.question,
     )
-    const allQuestionsAnswered = currentStepQuestion.every((item: any) => {
-      return currentStepAnswers?.[item.question] !== undefined
+
+    const unansweredQuestions: any = []
+
+    const allQuestionsAnswered = currentStepQuestions.every((item: any) => {
+      const isAnswered = currentStepAnswers?.[item.question] !== undefined
+      if (!isAnswered) {
+        unansweredQuestions.push(item.question)
+      }
+      return isAnswered
     })
 
-    return allQuestionsAnswered
+    // You can decide what to return based on your needs
+    return allQuestionsAnswered ? [] : unansweredQuestions
   }
 
   const isEditorMode = () => {
-    const isEditing = localStorage.getItem('tina.isEditing')
-
-    console.log('ssss', isEditing, !!isEditing)
+    const isEditing = localStorage.getItem('tina.local.isLogedIn')
 
     return !!isEditing
   }
 
   const handleNext = () => {
-    console.log('isCurrentStepComplete -->', isCurrentStepComplete())
+    const notAnswrd = isCurrentStepComplete()
 
-    if (!isCurrentStepComplete() && !isEditorMode()) {
-      alert('Please anser the all questions')
+    console.log('isCurrentStepComplete -->', notAnswrd)
+
+    if (notAnswrd.length && !isEditorMode()) {
+      const childElement = document.querySelector(`[data-q="${notAnswrd[0]}"]`)
+
+      if (childElement) {
+        const keyframes = [
+          {
+            transform: 'rotate(0deg) scale(1)',
+            backgroundColor: 'transparent',
+          },
+          { transform: 'rotate(2deg) scale(1.05)', backgroundColor: '#fcd4d4' },
+          {
+            transform: 'rotate(-2deg) scale(0.95)',
+            backgroundColor: 'transparent',
+          },
+          { transform: 'rotate(2deg) scale(1.05)', backgroundColor: '#fcd4d4' },
+          {
+            transform: 'rotate(-2deg) scale(0.95)',
+            backgroundColor: 'transparent',
+          },
+          {
+            transform: 'rotate(0deg) scale(1)',
+            backgroundColor: 'transparent',
+          },
+        ]
+
+        const timing = {
+          duration: 300,
+          iterations: 2,
+        }
+
+        const parentElement = childElement.parentElement
+        if (parentElement) {
+          const elementPosition =
+            parentElement.getBoundingClientRect().top + window.pageYOffset
+          const offsetPosition = elementPosition - 200
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          })
+
+          setTimeout(() => {
+            parentElement.animate(keyframes, timing)
+          }, 500)
+
+          // parentElement.animate(keyframes, timing)
+        }
+      }
+
+      // alert('Please anser the all questions')
       return
     }
 
@@ -96,10 +165,11 @@ export default function BottomTabNav({
 
       {steps[currentStep]?.skip && (
         <Button
+          id="skip_button"
           variant="secondary"
           size="md"
           onClick={handleSkip}
-          className="ml-auto mr-4"
+          className=""
         >
           Skip section
         </Button>

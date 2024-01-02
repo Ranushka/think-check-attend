@@ -5,6 +5,7 @@ import { CheckerQuestionSchema } from '../CheckerQuestion'
 import { heroSchema } from '../Hero'
 import { RichTextSchema } from '../RichText'
 import { titleSchema } from '../Title'
+import { WizardSkipSectionSchema } from '../WizardSkipSection'
 
 const WizardSteps = {
   name: 'BB_WizardSteps',
@@ -37,7 +38,12 @@ const WizardSteps = {
           ui: {
             visualSelector: true,
           },
-          templates: [RichTextSchema, KeepInMindSchema, CheckerQuestionSchema],
+          templates: [
+            RichTextSchema,
+            KeepInMindSchema,
+            CheckerQuestionSchema,
+            WizardSkipSectionSchema,
+          ],
         },
         {
           type: 'string',

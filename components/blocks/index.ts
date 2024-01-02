@@ -10,6 +10,7 @@ import RichText, { RichTextSchema } from './RichText'
 import Intro, { IntroSchema } from './Intro'
 import KeepInMind, { KeepInMindSchema } from './KeepInMind'
 import CheckerQuestion, { CheckerQuestionSchema } from './CheckerQuestion'
+import WizardSkipSection, { WizardSkipSectionSchema } from './WizardSkipSection'
 
 const blockComponents = {
   Title,
@@ -24,6 +25,7 @@ const blockComponents = {
   Intro,
   KeepInMind,
   CheckerQuestion,
+  WizardSkipSection,
 }
 
 const blockSchemas: any = [
@@ -39,6 +41,7 @@ const blockSchemas: any = [
   IntroSchema,
   KeepInMindSchema,
   CheckerQuestionSchema,
+  WizardSkipSectionSchema,
 ]
 
 export { blockComponents, blockSchemas }
