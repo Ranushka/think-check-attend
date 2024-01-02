@@ -9,7 +9,7 @@
       "label": "RESOURCES"
     }
   ],
-  "logo": "/uploads/Artboard 9.png",
+  "logo": "/uploads/logo.jpg",
   "footer": {
     "intro": "Introduced by Knowledge E, welcoming support for an ethical and knowledgeable academic world.\n",
     "socialLinks": [
@@ -27,6 +27,6 @@
       }
     ],
     "otherLinks": "### Support\n\n[Claim](http://localhost:3000/resources#)\n\n[Privacy](http://localhost:3000/resources#)\n\n[Terms](http://localhost:3000/resources#)\n",
-    "contactInfo": "### Contact Details\n\nAddress: Office 4401, Jumeirah Bay X2 Tower, Jumeirah Lakes Towers (JLT), Dubai, United Arab Emirates          \n\nPhone: [+971 44 227 043](tel:+97144227043)       \n\nEmail: [publishing@knowledgee.com](mailto:publishing@knowledgee.com)\n\nWebsite: [https://knepublishing.com/](https://knepublishing.com/ \"knepublishing\")\n"
+    "contactInfo": "### Contact Details\n\nAddress: Office 4401, Jumeirah Bay X2 Tower, Jumeirah Lakes Towers (JLT), Dubai, United Arab Emirates\n\nPhone: [+971 44 227 043](tel:+97144227043)\n\nEmail: [publishing@knowledgee.com](mailto:publishing@knowledgee.com)\n\nWebsite: [https://knepublishing.com/](https://knepublishing.com/ \"knepublishing\")\n"
   }
 }
