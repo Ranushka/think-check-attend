@@ -63,14 +63,20 @@ export default function BottomTabNav({
             transform: 'rotate(0deg) scale(1)',
             backgroundColor: 'transparent',
           },
-          { transform: 'rotate(2deg) scale(1.05)', backgroundColor: '#fcd4d4' },
           {
-            transform: 'rotate(-2deg) scale(0.95)',
+            transform: 'rotate(0.2deg) scale(1.05)',
+            backgroundColor: '#fcd4d4',
+          },
+          {
+            transform: 'rotate(-0.2deg) scale(0.95)',
             backgroundColor: 'transparent',
           },
-          { transform: 'rotate(2deg) scale(1.05)', backgroundColor: '#fcd4d4' },
           {
-            transform: 'rotate(-2deg) scale(0.95)',
+            transform: 'rotate(0.2deg) scale(1.05)',
+            backgroundColor: '#fcd4d4',
+          },
+          {
+            transform: 'rotate(-0.2deg) scale(0.95)',
             backgroundColor: 'transparent',
           },
           {
@@ -80,7 +86,7 @@ export default function BottomTabNav({
         ]
 
         const timing = {
-          duration: 300,
+          duration: 400,
           iterations: 2,
         }
 
