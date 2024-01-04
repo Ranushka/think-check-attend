@@ -10,6 +10,7 @@ import { Toolbar } from '../components'
 import { wrapFieldsWithMeta } from 'tinacms'
 
 import {
+  FaImage,
   FaBold,
   FaItalic,
   FaUnderline,
@@ -27,7 +28,7 @@ import initialValue from './initialValue'
 import Leaf from './Leaf'
 import Element from './Elements'
 import { toggleMark } from './helpers'
-import { AddLink, BlockButton, MarkButton } from './Buttons'
+import { AddImage, AddLink, BlockButton, MarkButton } from './Buttons'
 
 const HOTKEYS: any = {
   'mod+b': 'bold',
@@ -43,31 +44,45 @@ const RichTextExample = ({ fields }: any) => {
     [],
   )
 
+  const iconClass = 'w-4'
+
   return (
     <Slate editor={editor} initialValue={initialValue}>
       <Toolbar>
-        <MarkButton format="bold" icon={<FaBold className="w-3" />} />
-        <MarkButton format="italic" icon={<FaItalic className="w-3" />} />
-        <MarkButton format="underline" icon={<FaUnderline className="w-3" />} />
-        <AddLink icon={<FaLink className="w-3" />} />
-
-        <div className="flex gap-3">
-          <BlockButton
-            format="numbered-list"
-            icon={<FaListOl className="w-3" />}
+        <div className="flex gap-2 bg-white py-1 px-3 mt-1.5 rounded-md">
+          <MarkButton format="bold" icon={<FaBold className={iconClass} />} />
+          <MarkButton
+            format="italic"
+            icon={<FaItalic className={iconClass} />}
           />
-          <BlockButton
-            format="bulleted-list"
-            icon={<FaListUl className="w-3" />}
+          <MarkButton
+            format="underline"
+            icon={<FaUnderline className={iconClass} />}
           />
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-2 bg-white py-1 px-3 mt-1.5 rounded-md">
+          <AddLink icon={<FaLink className={iconClass} />} />
+          <AddImage icon={<FaImage className={iconClass} />} />
+        </div>
+
+        <div className="flex gap-2 bg-white py-1 px-3 mt-1.5 rounded-md">
+          <BlockButton
+            format="numbered-list"
+            icon={<FaListOl className={iconClass} />}
+          />
+          <BlockButton
+            format="bulleted-list"
+            icon={<FaListUl className={iconClass} />}
+          />
+        </div>
+
+        <div className="flex gap-2 bg-white py-1 px-3 mt-1.5 rounded-md">
           <BlockButton
             format="heading-one"
             icon={
-              <div className="flex">
-                <FaHeading className="w-3" />
+              <div className="flex items-center">
+                <FaHeading className={iconClass} />
                 <span className="font-bold">1</span>
               </div>
             }
@@ -75,8 +90,8 @@ const RichTextExample = ({ fields }: any) => {
           <BlockButton
             format="heading-two"
             icon={
-              <div className="flex">
-                <FaHeading className="w-3" />
+              <div className="flex items-center">
+                <FaHeading className={iconClass} />
                 <span className="font-bold">2</span>
               </div>
             }
@@ -84,8 +99,8 @@ const RichTextExample = ({ fields }: any) => {
           <BlockButton
             format="heading-three"
             icon={
-              <div className="flex">
-                <FaHeading className="w-3" />
+              <div className="flex items-center">
+                <FaHeading className={iconClass} />
                 <span className="font-bold">3</span>
               </div>
             }
@@ -93,8 +108,8 @@ const RichTextExample = ({ fields }: any) => {
           <BlockButton
             format="heading-four"
             icon={
-              <div className="flex">
-                <FaHeading className="w-3" />
+              <div className="flex items-center">
+                <FaHeading className={iconClass} />
                 <span className="font-bold">4</span>
               </div>
             }
@@ -102,24 +117,30 @@ const RichTextExample = ({ fields }: any) => {
           <BlockButton
             format="test-small"
             icon={
-              <div className="flex">
-                <FaParagraph className="w-3" />
+              <div className="flex items-center">
+                <FaParagraph className={iconClass} />
                 <span className="font-bold">s</span>
               </div>
             }
           />
         </div>
 
-        <div className="flex gap-3">
-          <BlockButton format="left" icon={<FaAlignLeft className="w-3" />} />
+        <div className="flex gap-2 bg-white py-1 px-3 mt-1.5 rounded-md">
+          <BlockButton
+            format="left"
+            icon={<FaAlignLeft className={iconClass} />}
+          />
           <BlockButton
             format="center"
-            icon={<FaAlignCenter className="w-3" />}
+            icon={<FaAlignCenter className={iconClass} />}
           />
-          <BlockButton format="right" icon={<FaAlignRight className="w-3" />} />
+          <BlockButton
+            format="right"
+            icon={<FaAlignRight className={iconClass} />}
+          />
           <BlockButton
             format="justify"
-            icon={<FaAlignJustify className="w-3" />}
+            icon={<FaAlignJustify className={iconClass} />}
           />
         </div>
       </Toolbar>

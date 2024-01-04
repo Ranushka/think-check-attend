@@ -22,7 +22,7 @@ export const Button = React.forwardRef(
       ref={ref}
       className={`
         ${className}
-        cursor-pointer
+        cursor-pointer flex items-center px-1 h-8
         ${
           reversed
             ? active
@@ -136,7 +136,7 @@ export const Toolbar = React.forwardRef(
     <Menu
       {...props}
       ref={ref}
-      className={`flex justify-around relative py-1 mb-2`}
+      className={`flex relative py-1 flex-wrap gap-x-2 mb-2`}
     />
   ),
 )

@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from './Link'
+import Image from './Image'
 
 const Element = (props: any) => {
   const { attributes, children, element } = props
@@ -7,6 +8,8 @@ const Element = (props: any) => {
   const style = { textAlign: element.align }
 
   switch (element.type) {
+    case 'image':
+      return <Image {...props} />
     case 'link':
       return <Link {...props} />
     case 'bulleted-list':

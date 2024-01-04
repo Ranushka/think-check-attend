@@ -9,6 +9,8 @@ import {
 } from './helpers'
 import { Button, Icon } from '../components'
 import { addLink } from './Link'
+import { addTianaImage } from './Image'
+import { useCMS } from 'tinacms'
 
 const AddLink = ({ format, icon }: any) => {
   const editor = useSlate()
@@ -21,7 +23,25 @@ const AddLink = ({ format, icon }: any) => {
         addLink(editor)
       }}
     >
-      <Icon>{icon}</Icon>
+      {icon}
+    </Button>
+  )
+}
+
+export const AddImage = ({ format, icon }: any) => {
+  const editor = useSlate()
+  const cms = useCMS()
+
+  return (
+    <Button
+      active={isMarkActive(editor, format)}
+      onMouseDown={(event: any) => {
+        event.preventDefault()
+
+        addTianaImage(editor, cms)
+      }}
+    >
+      {icon}
     </Button>
   )
 }
@@ -37,7 +57,7 @@ const MarkButton = ({ format, icon }: any) => {
         toggleMark(editor, format)
       }}
     >
-      <Icon>{icon}</Icon>
+      {icon}
     </Button>
   )
 }
@@ -57,9 +77,10 @@ const BlockButton = ({ format, icon }: any) => {
         toggleBlock(editor, format)
       }}
     >
-      <Icon>{icon}</Icon>
+      {icon}
     </Button>
   )
 }
-
+// display: flex;
+// align-items: center;
 export { BlockButton, MarkButton, AddLink }
